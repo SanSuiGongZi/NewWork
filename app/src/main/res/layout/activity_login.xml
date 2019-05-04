@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.activity.LoginActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mTool"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0">
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/img_CE"
+        android:src="@mipmap/back_white"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30" />
+
+    <FrameLayout
+        android:id="@+id/mfl"
+        android:layout_below="@id/mTool"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+</RelativeLayout>

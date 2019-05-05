@@ -18,12 +18,19 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
+            storeFile file('SanSuiJiaZu.jks')
+            storePassword "sansui"
+            keyAlias "sansuijiazu"
+            keyPassword "sansui"
+        }
+        release {
+            storeFile file('SanSuiJiaZu.jks')
+            storePassword "sansui"
+            keyAlias "sansuijiazu"
+            keyPassword "sansui"
         }
     }
+
 }
 
 dependencies {
@@ -68,4 +75,11 @@ dependencies {
     //ButterKnife依赖
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //AgentWeb
+    api 'com.just.agentweb:agentweb:4.0.3-alpha@aar' // (必选)
+    //侧滑删除按钮
+    implementation 'com.yanzhenjie:recyclerview-swipe:1.1.4'
+    //改变状态栏
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
 }

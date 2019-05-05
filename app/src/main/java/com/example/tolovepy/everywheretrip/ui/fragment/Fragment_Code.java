@@ -3,6 +3,8 @@ package com.example.tolovepy.everywheretrip.ui.fragment;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -13,8 +15,8 @@ import android.widget.ImageView;
 
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseFragment;
-import com.example.tolovepy.everywheretrip.mvp.presenter.FragLoginPre;
-import com.example.tolovepy.everywheretrip.mvp.view.FragmentLoginView;
+import com.example.tolovepy.everywheretrip.mvp.presenter.EmptyPre;
+import com.example.tolovepy.everywheretrip.mvp.view.EmptyView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ import butterknife.BindView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_Code extends BaseFragment<FragmentLoginView, FragLoginPre> implements FragmentLoginView {
+public class Fragment_Code extends BaseFragment<EmptyView, EmptyPre> implements EmptyView {
 
 
     @BindView(R.id.img_start)
@@ -47,8 +49,8 @@ public class Fragment_Code extends BaseFragment<FragmentLoginView, FragLoginPre>
     }
 
     @Override
-    protected FragLoginPre initPresenter() {
-        return new FragLoginPre();
+    protected EmptyPre initPresenter() {
+        return new EmptyPre();
     }
 
     @Override
@@ -58,19 +60,19 @@ public class Fragment_Code extends BaseFragment<FragmentLoginView, FragLoginPre>
 
     @Override
     protected void initView() {
-
         imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
+        initEvent();
         mImgStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onClick != null) {
-                    onClick.onClickLister(true);
-                }
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.add(R.id.mfl, new Fragment_login());
+                transaction.commit();
             }
         });
-        initEvent();
-
     }
 
     private void initEvent() {

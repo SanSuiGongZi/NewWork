@@ -17,7 +17,21 @@
 
     <style name="Theme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:windowFullscreen">true</item>
         <item name="colorPrimary">@color/colorNoPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryNoDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorNoPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryNoDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/c_FEFEFE</item>
         <item name="colorPrimaryDark">@color/colorPrimaryNoDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>

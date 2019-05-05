@@ -15,7 +15,7 @@
     <TextView
         android:text="@string/appbar_scrolling_view_behavior"
         android:id="@+id/tv_time_inform"
-        android:textColor="@color/c_999999"
+        android:textColor="@color/c_999"
         android:layout_marginLeft="@dimen/dp_10"
         android:textSize="@dimen/sp_12"
         android:layout_width="wrap_content"

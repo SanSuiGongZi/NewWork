@@ -2,7 +2,7 @@ package com.example.tolovepy.everywheretrip.ui.fragment;
 
 
 import android.app.Activity;
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,11 +25,13 @@ import android.widget.TextView;
 
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseFragment;
+import com.example.tolovepy.everywheretrip.base.Constants;
 import com.example.tolovepy.everywheretrip.mvp.presenter.MessagePre;
 import com.example.tolovepy.everywheretrip.mvp.view.MessageView;
 import com.example.tolovepy.everywheretrip.ui.activity.MainActivity;
 import com.example.tolovepy.everywheretrip.ui.activity.WebViewActivity;
-import com.umeng.socialize.UMShareAPI;
+import com.example.tolovepy.everywheretrip.util.ToastUtil;
+import com.example.tolovepy.everywheretrip.util.Tools;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import butterknife.BindView;
@@ -40,7 +42,6 @@ import butterknife.OnClick;
  */
 public class Fragment_login extends BaseFragment<MessageView, MessagePre> implements MessageView {
 
-    private static final String TAG = "Fragment_login";
     @BindView(R.id.et_phone)
     EditText mEt;
     @BindView(R.id.btn_Verification)
@@ -53,11 +54,22 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
     ImageButton imgWB;
     @BindView(R.id.tv_agreement)
     TextView tvAgreement;
-    private Fragment_Code code;
+    private int type;
 
     public Fragment_login() {
         // Required empty public constructor
     }
+
+    //因为登录和绑定手机号码是用的一个碎片,所以需要使用type隐藏和显示某一些view
+    //如果是0:代表登录界面;1:代表要绑定手机
+    public static Fragment_login newLogin(int type) {
+        Fragment_login login = new Fragment_login();
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constants.TYPE, type);
+        login.setArguments(bundle);
+        return login;
+    }
+
 
     @Override
     protected MessagePre initPresenter() {
@@ -71,7 +83,18 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
 
     @Override
     protected void initView() {
+        getArgumentsData();
+        protocol();
+        initI();
+    }
 
+    private void getArgumentsData() {
+        Bundle bundle = getArguments();
+        type = bundle.getInt(Constants.TYPE);
+    }
+
+    //设置图文混排
+    private void protocol() {
         //SpannableString ss = new SpannableString(getResources().getString(R.string.agree_protocol));
         //通过设置不同的span达到不同的显示效果
          /*  what：对SpannableString进行润色的各种Span；
@@ -119,9 +142,9 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
         //设置这个ClickableSpan才能启动
         tvAgreement.setMovementMethod(LinkMovementMethod.getInstance());
         tvAgreement.setText(stringBuilder);
-        initI();
     }
 
+    //设置验证码按钮
     private void initI() {
         mEt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -168,23 +191,23 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
     }
 
     private void AddVerifyFragment() {
-        if (TextUtils.isEmpty(getPhone())) {
+        String phone = getPhone();
+        if (TextUtils.isEmpty(phone)) {
             return;
+        } else {
+            if (phone.length() == 11) {
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                //添加回退栈
+                FragmentCodes codes = new FragmentCodes();
+                transaction.addToBackStack(null);
+                transaction.add(R.id.mfl, codes).commit();
+                //关闭软键盘
+                Tools.closeKeyBoard(getActivity());
+            }
         }
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        //添加回退栈
-        code = new Fragment_Code();
-        FragmentCodes codes = new FragmentCodes();
-        transaction.addToBackStack(null);
-        transaction.add(R.id.mfl, codes).commit();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        UMShareAPI.get(getActivity()).onActivityResult(requestCode, resultCode, data);
-    }
 
     @Override
     public String getPhone() {
@@ -199,6 +222,11 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
     @Override
     public void goMainActivity() {
         MainActivity.startAct(getContext());
+    }
+
+    @Override
+    public void toastShort(String string) {
+        ToastUtil.showShort(string);
     }
 
 }

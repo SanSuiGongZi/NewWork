@@ -24,7 +24,7 @@ public class Model extends BaseModel {
     public void getVerifyCode(final ResultCallBack<DemoBean> callBack) {
 
         MyApi myApi = HttpUtils.getInstance().getApiserver(MyApi.sBaseUrl, MyApi.class);
-        Observable<DemoBean> code = myApi.getVerifyCodes();
+        Observable<DemoBean> code = myApi.getVerifyCode();
         code.compose(RxUtils.<DemoBean>rxObserableSchedulerHelper())
                 .subscribe(new BaseObserver<DemoBean>() {
                     @Override

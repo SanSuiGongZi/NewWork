@@ -9,5 +9,5 @@ public interface MessageView extends BaseMvpView {
     String getPhone();
     Activity getAct();
     void goMainActivity();
-
+    void toastShort(String string);
 }

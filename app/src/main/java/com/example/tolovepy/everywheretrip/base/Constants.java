@@ -27,4 +27,13 @@ public interface Constants {
     //夜间模式
     String MODE = "mode";
     String NIGHT_CURRENT_FRAG_POS = "fragment_pos";
+
+    String TOKEN = "token";
+    String DESC = "description";
+    String USERNAME = "userName";
+    String GENDER = "gender";
+    String EMAIL = "email";
+    String PHOTO = "photo";
+    String PHONE = "phone";
+    String TYPE = "type";
 }

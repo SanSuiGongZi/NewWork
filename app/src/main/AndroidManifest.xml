@@ -3,10 +3,11 @@
     package="com.example.tolovepy.everywheretrip">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- Ument 5ccbb9970cafb2dbbf0009a7 -->
     <application
@@ -19,22 +20,16 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.MainActivity"
-            android:theme="@style/MainTheme">
-
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:theme="@style/Theme"
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity
-            android:name=".ui.activity.LoginActivity"
-            android:theme="@style/Theme"
-            android:windowSoftInputMode="stateVisible|adjustResize">
-
-
-
         </activity>
 
         <!-- 新浪微博 - start -->
@@ -47,7 +42,7 @@
             android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity
             android:name="com.sina.weibo.sdk.share.WbShareTransActivity"
             android:launchMode="singleTask"
@@ -83,7 +78,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!--换成自己的-->
+                换成自己的
                 <data android:scheme="tencent100424468" />
             </intent-filter>
         </activity>
@@ -105,6 +100,8 @@
             android:theme="@style/Theme" />
         <activity
             android:name=".ui.activity.WebViewActivity"
+            android:theme="@style/MyTheme" />
+        <activity android:name=".ui.activity.MessageActivity"
             android:theme="@style/MyTheme"></activity>
     </application>
 

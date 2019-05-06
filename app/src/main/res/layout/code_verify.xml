@@ -20,7 +20,6 @@
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
         android:imeOptions="actionDone"
-        android:inputType="number"
         android:singleLine="true" />
 
 </RelativeLayout>

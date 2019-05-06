@@ -9,6 +9,7 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -46,12 +47,12 @@ public class IdentifyingCodeView extends RelativeLayout {
     //输入框文字大小
     private float mEtTextSize;
     //输入框获取焦点时背景
-    private int mEtBackgroundDrawableFocus;
+    private int mEtBackgroundDrawableFocus = R.drawable.shape_icv_et_bg_normal;
     //输入完成点击完成时的背景
     private int mEtBackgroundEnter = R.drawable.shape_icv_et_bg_enter;
 
     // 输入框没有焦点时背景
-    private int mEtBackgroundDrawableNormal;
+    private int mEtBackgroundDrawableNormal = R.drawable.shape_icv_et_bg_enter;
     //存储TextView的数据 数量由自定义控件的属性传入
     private TextView[] mTextViews;
     /**
@@ -128,7 +129,7 @@ public class IdentifyingCodeView extends RelativeLayout {
         mTextViews = new TextView[etNumber];
         for (int i = 0; i < mTextViews.length; i++) {
             TextView textView = new TextView(context);
-            textView.setTextSize(etTextSize);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,etTextSize);
             textView.setTextColor(etTextColor);
             textView.setWidth(etWidth);
             textView.setHeight(etHeight);
@@ -296,8 +297,12 @@ public class IdentifyingCodeView extends RelativeLayout {
         this.et.setFocusableInTouchMode(b);
     }
 
+    /**
+     * 设置不允许输入后的背景
+     * @param b true,白色背景,false灰色背景
+     */
     public void setBackgroundEnter(boolean b){
-        if (b){
+        if (!b){
             for (int i = 0; i < mTextViews.length; i++) {
                 mTextViews[i].setBackgroundResource(mEtBackgroundEnter);
             }

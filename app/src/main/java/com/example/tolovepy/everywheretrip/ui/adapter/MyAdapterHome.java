@@ -85,12 +85,14 @@ public class MyAdapterHome extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             MainBean.ResultBean.RoutesBean bean = dataList.get(position);
             ViewHolderData holder = (ViewHolderData) viewHolder;
-            holder.mTv_title.setText(bean.getTitle());
-            holder.mTv_area.setText(bean.getCity());
-            holder.mTv_str.setText(bean.getIntro());
-            holder.mTv_quantity.setText(bean.getPurchasedTimes()+"");
-            holder.mBtn_price.setText(bean.getPrice());
-            Glide.with(context).load(bean.getCardURL()).into(holder.mImg_back);
+            if (!bean.getType().equals("bundle")) {
+                holder.mTv_title.setText(bean.getTitle());
+                holder.mTv_area.setText(bean.getCity());
+                holder.mTv_str.setText(bean.getIntro());
+                holder.mTv_quantity.setText(bean.getPurchasedTimes() + "");
+                holder.mBtn_price.setText(""+bean.getPriceInCents());
+                Glide.with(context).load(bean.getCardURL()).into(holder.mImg_back);
+            }
 
         }
     }

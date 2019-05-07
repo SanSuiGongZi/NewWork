@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/dp_308"
+    android:layout_width="wrap_content"
     android:layout_height="@dimen/dp_667"
     android:background="@color/c_ffffff">
 
@@ -229,7 +229,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_17"
-                    android:src="@drawable/icon_me_yigou" />
+                    android:src="@drawable/icon_me_shoucang" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -269,7 +269,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_17"
-                    android:src="@drawable/icon_me_yigou" />
+                    android:src="@drawable/icon_me_guanzhu" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -331,7 +331,7 @@
 
             <ImageView
                 android:id="@+id/img_feedback"
-                android:src="@drawable/icon_me_kefu"
+                android:src="@drawable/icon_me_ziliao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -353,7 +353,7 @@
 
             <ImageView
                 android:id="@+id/img_versions"
-                android:src="@drawable/icon_me_kefu"
+                android:src="@drawable/icon_me_banben"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

@@ -10,4 +10,5 @@ public interface MessageView extends BaseMvpView {
     Activity getAct();
     void goMainActivity();
     void toastShort(String string);
+    void setCode(String code);
 }

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseFragment;
+import com.example.tolovepy.everywheretrip.bean.BanmiBean;
 import com.example.tolovepy.everywheretrip.bean.StayBean;
 import com.example.tolovepy.everywheretrip.mvp.presenter.StayPre;
 import com.example.tolovepy.everywheretrip.mvp.view.StayView;
@@ -24,7 +25,7 @@ public class Fragment_Stay extends BaseFragment<StayView, StayPre> implements St
 
     @BindView(R.id.mRv_stay)
     RecyclerView mRvStay;
-    private ArrayList<StayBean.ResultBean.BanmiBean> list;
+    private ArrayList<BanmiBean> list;
     private MyAdapterStay adapterStay;
 
     public Fragment_Stay() {
@@ -45,7 +46,7 @@ public class Fragment_Stay extends BaseFragment<StayView, StayPre> implements St
     protected void initView() {
         mRvStay.setLayoutManager(new LinearLayoutManager(getActivity()));
         list = new ArrayList<>();
-        adapterStay = new MyAdapterStay(getActivity());
+        adapterStay = new MyAdapterStay(getActivity(),true);
         mRvStay.setAdapter(adapterStay);
     }
 

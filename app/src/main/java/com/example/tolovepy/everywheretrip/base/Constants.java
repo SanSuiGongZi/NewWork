@@ -36,4 +36,5 @@ public interface Constants {
     String PHOTO = "photo";
     String PHONE = "phone";
     String TYPE = "type";
+    String VERIFY_CODE = "code";
 }

@@ -42,7 +42,7 @@
             android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.sina.weibo.sdk.share.WbShareTransActivity"
             android:launchMode="singleTask"
@@ -101,8 +101,15 @@
         <activity
             android:name=".ui.activity.WebViewActivity"
             android:theme="@style/MyTheme" />
-        <activity android:name=".ui.activity.MessageActivity"
-            android:theme="@style/MyTheme"></activity>
+        <activity
+            android:name=".ui.activity.MessageActivity"
+            android:theme="@style/MyTheme" />
+        <activity
+            android:name=".ui.activity.Personage_DataActivity"
+            android:theme="@style/MainTheme" />
+        <activity android:name=".ui.activity.CollectActivity" />
+        <activity android:name=".ui.activity.HeadActivity"
+            android:theme="@style/MainTheme"></activity>
     </application>
 
 </manifest>

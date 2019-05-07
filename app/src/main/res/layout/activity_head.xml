@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.HeadActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mTool_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_42">
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_replaces"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:src="@mipmap/back_white" />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/myPhoto"
+                android:textColor="@color/c_333"
+                android:textSize="@dimen/sp_16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/mImg_popup"
+                android:src="@mipmap/d"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/mImg_head"
+        android:src="@mipmap/ee"
+        android:scaleType="fitXY"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_375" />
+
+</RelativeLayout>

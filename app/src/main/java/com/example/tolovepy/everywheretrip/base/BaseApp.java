@@ -6,6 +6,8 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.example.tolovepy.everywheretrip.dao.DaoMaster;
+import com.example.tolovepy.everywheretrip.dao.DaoSession;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 
@@ -17,6 +19,7 @@ public class BaseApp extends Application {
     private static BaseApp sBaseApp;
     public static int mWidthPixels;
     public static int mHeightPixels;
+    public static DaoSession mSession;
 
     @Override
     public void onCreate() {
@@ -24,6 +27,13 @@ public class BaseApp extends Application {
         sBaseApp = this;
         getUment();
         getScreenWH();
+        getGreenDao();
+    }
+
+    private void getGreenDao() {
+        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(this, "ban.db");
+        DaoMaster daoMaster = new DaoMaster(devOpenHelper.getWritableDatabase());
+        mSession = daoMaster.newSession();
     }
 
     private void getUment() {
@@ -57,5 +67,9 @@ public class BaseApp extends Application {
 
     public static Resources getRes() {
         return sBaseApp.getResources();
+    }
+
+    public static DaoSession getmSession() {
+        return mSession;
     }
 }

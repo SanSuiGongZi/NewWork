@@ -6,8 +6,10 @@ import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseApp;
 import com.example.tolovepy.everywheretrip.base.BasePresenter;
 import com.example.tolovepy.everywheretrip.base.Constants;
+import com.example.tolovepy.everywheretrip.bean.DemoBean;
 import com.example.tolovepy.everywheretrip.bean.LoginInfo;
 import com.example.tolovepy.everywheretrip.mvp.model.MessageModel;
+import com.example.tolovepy.everywheretrip.mvp.model.Model;
 import com.example.tolovepy.everywheretrip.mvp.view.MessageView;
 import com.example.tolovepy.everywheretrip.net.ResultCallBack;
 import com.example.tolovepy.everywheretrip.util.SpUtil;
@@ -22,12 +24,30 @@ public class MessagePre extends BasePresenter<MessageView> {
 
     private static final String TAG = "MessagePre";
     private MessageModel model;
+    private Model mModel;
 
     @Override
     protected void initModel() {
         model = new MessageModel();
         mModels.add(model);
+
+        mModel = new Model();
+        mModels.add(mModel);
     }
+
+    public void getCode(){
+        model.getVerifyCode(new ResultCallBack<DemoBean>() {
+            @Override
+            public void onSuccess(DemoBean bean) {
+                mMvpView.setCode(bean.getData());
+            }
+
+            @Override
+            public void onFail(String msg) {
+            }
+        });
+    }
+
 
     public void oauthLogin(SHARE_MEDIA type) {
         UMShareAPI umShareAPI = UMShareAPI.get(mMvpView.getAct());
@@ -112,6 +132,7 @@ public class MessagePre extends BasePresenter<MessageView> {
                     if (mMvpView != null){
                         mMvpView.toastShort(BaseApp.getRes().getString(R.string.login_success));
                         mMvpView.goMainActivity();
+
                     }
                 }else {
                     if (mMvpView != null){

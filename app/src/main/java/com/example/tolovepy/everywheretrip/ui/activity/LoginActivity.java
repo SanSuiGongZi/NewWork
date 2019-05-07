@@ -22,6 +22,7 @@ public class LoginActivity extends BaseActivity<EmptyView, EmptyPre> implements 
     @BindView(R.id.mfl)
     FrameLayout mfl;
     private int TYPE_LOGIN = 0;
+    public static String TAG = "Fragment_login";
 
     @Override
     protected EmptyPre initPresenter() {
@@ -52,7 +53,7 @@ public class LoginActivity extends BaseActivity<EmptyView, EmptyPre> implements 
         int extra = getIntent().getIntExtra(Constants.TYPE, TYPE_LOGIN);
         Fragment_login newLogin = Fragment_login.newLogin(extra);
         FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().add(R.id.mfl, newLogin).commit();
+        manager.beginTransaction().add(R.id.mfl, newLogin,TAG).commit();
 
     }
 

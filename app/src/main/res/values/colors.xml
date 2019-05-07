@@ -20,8 +20,10 @@
     <color name="c_fa6a13">#fa6313</color>
     <color name="c_333">#333333</color>
     <color name="c_e0">#60ffffff</color>
+    <color name="c_60">#60000000</color>
     <color name="c_f0">#f0f0f0</color>
     <color name="c_ff9d53">#ff9d53</color>
     <color name="c_666">#666666</color>
     <color name="c_f5">#f5f5f5</color>
+    <color name="c_read">#FA0C0C</color>
 </resources>

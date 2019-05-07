@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/mTv_nos"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:background="@drawable/rediosex"
+        android:gravity="center"
+        android:text="@string/no"
+        android:textColor="@color/c_read"
+        android:textSize="@dimen/sp_15" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_150"
+        android:layout_above="@id/mTv_nos"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:background="@drawable/rediosex"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/mTv_man"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/rediosex"
+            android:gravity="center"
+            android:text="@string/man"
+            android:textColor="@color/c_read"
+            android:textSize="@dimen/sp_15" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/c_60" />
+
+        <TextView
+            android:id="@+id/mTv_lady"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/rediosex"
+            android:gravity="center"
+            android:text="@string/lady"
+            android:textColor="@color/c_read"
+            android:textSize="@dimen/sp_15" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/c_60" />
+
+        <TextView
+            android:id="@+id/mTv_secrecy"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/rediosex"
+            android:gravity="center"
+            android:text="@string/secrecy"
+            android:textColor="@color/c_read"
+            android:textSize="@dimen/sp_15" />
+    </LinearLayout>
+
+</RelativeLayout>

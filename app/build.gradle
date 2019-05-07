@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -32,6 +32,12 @@ android {
         }
     }
 
+    greendao {
+        schemaVersion 1  // 数据库的版本号
+        daoPackage 'com.example.tolovepy.everywheretrip.dao'  // 自己项目的包名
+        targetGenDir 'src/main/java' // 存放的目录地址
+    }
+
 }
 
 dependencies {
@@ -53,7 +59,8 @@ dependencies {
     implementation 'com.youth.banner:banner:1.4.10'
     //glide图片加载框架
     implementation 'com.github.bumptech.glide:glide:3.7.0'
-
+    //ok
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     //Tablayout依赖
     implementation 'com.android.support:design:28.0.0'
     //SmartRefreshLayout
@@ -83,4 +90,7 @@ dependencies {
     implementation 'com.yanzhenjie:recyclerview-swipe:1.1.4'
     //改变状态栏
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
+    //普通依赖
+    implementation 'org.greenrobot:greendao:3.2.0'
+    implementation 'org.greenrobot:greendao-generator:3.2.0'
 }

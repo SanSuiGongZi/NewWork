@@ -121,10 +121,17 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
     protected void initListener() {
         View view = mNv.getHeaderView(0);
         RelativeLayout mRl = view.findViewById(R.id.rl_tit);
+        RelativeLayout mRls = view.findViewById(R.id.collect);
         mRl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,MessageActivity.class));
+            }
+        });
+        mRls.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,CollectActivity.class));
             }
         });
     }

@@ -12,20 +12,29 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.tolovepy.everywheretrip.R;
-import com.example.tolovepy.everywheretrip.bean.StayBean;
+import com.example.tolovepy.everywheretrip.bean.BanmiBean;
+import com.example.tolovepy.everywheretrip.ui.api.MyGreenDao;
+import com.example.tolovepy.everywheretrip.util.ToastUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapterStay extends RecyclerView.Adapter<MyAdapterStay.ViewHolder> {
 
     private Context context;
-    private ArrayList<StayBean.ResultBean.BanmiBean> list = new ArrayList<>();
+    private ArrayList<BanmiBean> list = new ArrayList<>();
+    private boolean mBoolean;
 
-    public MyAdapterStay(Context context) {
+    public MyAdapterStay(Context context, boolean aBoolean) {
         this.context = context;
+        this.mBoolean = aBoolean;
     }
 
-    public void addList(ArrayList<StayBean.ResultBean.BanmiBean> lists) {
+    public void setAdapterStay(){
+        notifyDataSetChanged();
+    }
+
+    public void addList(List<BanmiBean> lists) {
         if (lists != null) {
             list.clear();
             list.addAll(lists);
@@ -42,8 +51,8 @@ public class MyAdapterStay extends RecyclerView.Adapter<MyAdapterStay.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        StayBean.ResultBean.BanmiBean bean = list.get(i);
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
+        final BanmiBean bean = list.get(i);
         viewHolder.mTv_name_stay.setText(bean.getName());
         viewHolder.tv_person.setText(bean.getId() + "人关注");
         viewHolder.mTv_region.setText(bean.getLocation());
@@ -51,9 +60,41 @@ public class MyAdapterStay extends RecyclerView.Adapter<MyAdapterStay.ViewHolder
         RequestOptions options = RequestOptions.placeholderOf(R.mipmap.ee);
         Glide.with(context).load(bean.getPhoto()).apply(options).into(viewHolder.img_stay);
 
-        if (i==0){
-            Glide.with(context).load(R.mipmap.follow).into(viewHolder.mImg);
+        if (mBoolean) {
+            viewHolder.mImg.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.mImg.setVisibility(View.INVISIBLE);
         }
+
+        if (MyGreenDao.queryOnly(bean) != null) {
+            Glide.with(context).load(R.mipmap.follow).into(viewHolder.mImg);
+        } else {
+            Glide.with(context).load(R.mipmap.follow_unselected).into(viewHolder.mImg);
+        }
+
+        viewHolder.mImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyGreenDao.insert(bean);
+                if (MyGreenDao.queryOnly(bean) != null) {
+                    ToastUtil.showShort("收藏成功");
+                    Glide.with(context).load(R.mipmap.follow).into(viewHolder.mImg);
+                } else {
+                    Glide.with(context).load(R.mipmap.follow_unselected).into(viewHolder.mImg);
+                }
+                notifyDataSetChanged();
+            }
+        });
+
+        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (mOnClick!=null){
+                    mOnClick.onItemClick(bean,i);
+                }
+                return false;
+            }
+        });
 
     }
 
@@ -81,4 +122,15 @@ public class MyAdapterStay extends RecyclerView.Adapter<MyAdapterStay.ViewHolder
             mImg = itemView.findViewById(R.id.mImg);
         }
     }
+
+    private OnClick mOnClick;
+
+    public void setOnClick(OnClick onClick) {
+        mOnClick = onClick;
+    }
+
+    public interface OnClick{
+        void onItemClick(BanmiBean banmiBean , int position);
+    }
+
 }

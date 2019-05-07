@@ -25,6 +25,7 @@ public class MyAdapterHome extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private ArrayList<MainBean.ResultBean.RoutesBean> dataList = new ArrayList<>();
     private int ZERO = 0;
     private int ONE = 1;
+    private int TOW = 2;
 
     public MyAdapterHome(Context context) {
         this.context = context;
@@ -53,10 +54,14 @@ public class MyAdapterHome extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             View view = LayoutInflater.from(context).inflate(R.layout.item_mainbanner, null);
             ViewHolderBann holderBann = new ViewHolderBann(view);
             return holderBann;
-        } else {
+        } else if (i == ONE) {
             View inflate = LayoutInflater.from(context).inflate(R.layout.item_maindata, null);
             ViewHolderData holderData = new ViewHolderData(inflate);
             return holderData;
+        } else {
+            View view = LayoutInflater.from(context).inflate(R.layout.item_home, null);
+            ViewHolderDatas datas = new ViewHolderDatas(view);
+            return datas;
         }
     }
 
@@ -84,14 +89,17 @@ public class MyAdapterHome extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             }
 
             MainBean.ResultBean.RoutesBean bean = dataList.get(position);
-            ViewHolderData holder = (ViewHolderData) viewHolder;
             if (!bean.getType().equals("bundle")) {
+                ViewHolderData holder = (ViewHolderData) viewHolder;
                 holder.mTv_title.setText(bean.getTitle());
                 holder.mTv_area.setText(bean.getCity());
                 holder.mTv_str.setText(bean.getIntro());
                 holder.mTv_quantity.setText(bean.getPurchasedTimes() + "");
-                holder.mBtn_price.setText(""+bean.getPriceInCents());
+                holder.mBtn_price.setText("¥" + bean.getPrice());
                 Glide.with(context).load(bean.getCardURL()).into(holder.mImg_back);
+            }else {
+                ViewHolderDatas holder = (ViewHolderDatas) viewHolder;
+                Glide.with(context).load(bean.getCardURL()).into(holder.mIv_home);
             }
 
         }
@@ -112,10 +120,20 @@ public class MyAdapterHome extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             if (position == 0) {
                 return ZERO;
             } else {
-                return ONE;
+                MainBean.ResultBean.RoutesBean bean = dataList.get(position - 1);
+                if (bean.getType().equals("route")) {
+                    return ONE;
+                } else {
+                    return TOW;
+                }
             }
         } else {
-            return ONE;
+            MainBean.ResultBean.RoutesBean bean = dataList.get(position);
+            if (bean.getType().equals("route")) {
+                return ONE;
+            } else {
+                return TOW;
+            }
         }
     }
 
@@ -146,6 +164,16 @@ public class MyAdapterHome extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             mTv_str = itemView.findViewById(R.id.mTv_str);
             mTv_quantity = itemView.findViewById(R.id.mTv_quantity);
             mImg_back = itemView.findViewById(R.id.img_back);
+        }
+    }
+
+    class ViewHolderDatas extends RecyclerView.ViewHolder {
+
+        ImageView mIv_home;
+
+        public ViewHolderDatas(@NonNull View itemView) {
+            super(itemView);
+            mIv_home = itemView.findViewById(R.id.mIv_home);
         }
     }
 

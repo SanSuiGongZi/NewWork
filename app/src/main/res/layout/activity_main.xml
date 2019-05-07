@@ -41,7 +41,7 @@
            app:tabTextColor="@color/c_999"
            app:tabIndicator="@color/transparent"
            app:tabSelectedTextColor="@color/c_FA6A13"
-           android:background="@color/c_e0"
+           android:background="@color/c_60"
            android:layout_width="match_parent"
            android:layout_height="@dimen/dp_60">
 

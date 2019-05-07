@@ -3,6 +3,7 @@ package com.example.tolovepy.everywheretrip.ui.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -55,6 +56,11 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
     @BindView(R.id.tv_agreement)
     TextView tvAgreement;
     private int type;
+    private static int COUNT_DOWN_TIME = 10;
+    private int time = COUNT_DOWN_TIME;
+    private String mVerifyCode;
+    private Handler mHandler;
+    private FragmentCodes mCodes;
 
     public Fragment_login() {
         // Required empty public constructor
@@ -185,29 +191,72 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
                 mPresenter.oauthLogin(SHARE_MEDIA.SINA);
                 break;
             case R.id.btn_Verification:
+                getCode();
                 AddVerifyFragment();
+                timer();
                 break;
         }
     }
 
+    //避免被多次执行倒计时
+    private void timer() {
+        if (time>0&&time<COUNT_DOWN_TIME){
+            return;
+        }else {
+            countDown();
+        }
+    }
+
+    //倒计时,如果倒计时已在运行中,就不走
+    public void countDown() {
+        if (mHandler==null){
+            mHandler = new Handler();
+        }
+        //倒计时重新获取验证码
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               if (time<=0){
+                   time=COUNT_DOWN_TIME;
+                   return;
+               }
+
+               time--;
+               if (mCodes!=null){
+                   mCodes.autoLogin(time);
+               }
+                countDown();
+            }
+        },1000);
+    }
+
+    //判断是否重新获取验证码
+    private void getCode() {
+        if (time>0&&time<COUNT_DOWN_TIME-1){
+            //正在处于倒计时中
+            return;
+        }else {
+            mVerifyCode ="";
+            mPresenter.getCode();
+        }
+    }
+
+    //添加回退栈并传值
     private void AddVerifyFragment() {
         String phone = getPhone();
         if (TextUtils.isEmpty(phone)) {
             return;
         } else {
-            if (phone.length() == 11) {
-                FragmentManager manager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                //添加回退栈
-                FragmentCodes codes = new FragmentCodes();
-                transaction.addToBackStack(null);
-                transaction.add(R.id.mfl, codes).commit();
-                //关闭软键盘
-                Tools.closeKeyBoard(getActivity());
-            }
+            FragmentManager manager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            //添加回退栈
+            transaction.addToBackStack(null);
+            mCodes = FragmentCodes.getNewCode(mVerifyCode);
+            transaction.add(R.id.mfl, mCodes).commit();
+            //关闭软键盘
+            Tools.closeKeyBoard(getActivity());
         }
     }
-
 
     @Override
     public String getPhone() {
@@ -222,11 +271,20 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
     @Override
     public void goMainActivity() {
         MainActivity.startAct(getContext());
+        getActivity().finish();
     }
 
     @Override
     public void toastShort(String string) {
         ToastUtil.showShort(string);
+    }
+
+    @Override
+    public void setCode(String c) {
+        this.mVerifyCode = c;
+        if (mVerifyCode!=null){
+            mCodes.setCode(c);
+        }
     }
 
 }

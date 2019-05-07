@@ -18,6 +18,7 @@ public interface MyApi {
     public static final int SUCCESS_CODE = 0;
     String sBaseUrl = "http://yun918.cn/study/public/index.php/";
     String mainUrl = "http://api.banmi.com/";
+
     /**
      * 获取验证码
      *
@@ -28,6 +29,7 @@ public interface MyApi {
 
     /**
      * 主页数据
+     *
      * @return
      */
     @Headers("banmi-app-token:JVy0IvZamK7f7FBZLKFtoniiixKMlnnJ6dWZ6NlsY4HGsxcAA9qvFo8yacHCKHE8YAcd0UF9L59nEm7zk9AUixee0Hl8EeWA880c0ikZBW0KEYuxQy5Z9NP3BNoBi3o3Q0g")
@@ -47,11 +49,11 @@ public interface MyApi {
 
     /**
      * 伴米数据
+     *
      * @param page
      * @return
      */
     @Headers("banmi-app-token:JVy0IvZamK7f7FBZLKFtoniiixKMlnnJ6dWZ6NlsY4HGsxcAA9qvFo8yacHCKHE8YAcd0UF9L59nEm7zk9AUixee0Hl8EeWA880c0ikZBW0KEYuxQy5Z9NP3BNoBi3o3Q0g")
     @GET("api/3.0/banmi")
     Observable<StayBean> getData(@Query("page") int page);
-
 }

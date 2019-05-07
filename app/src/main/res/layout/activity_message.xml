@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/img_replace"
-            android:layout_width="@dimen/dp_17"
-            android:layout_height="@dimen/dp_17"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
             android:src="@mipmap/back_white" />
 
         <TextView
@@ -162,8 +162,11 @@
 
             <TextView
                 android:id="@+id/mTv_sig"
-                android:layout_width="@dimen/dp_56"
-                android:layout_height="@dimen/dp_17"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:maxWidth="@dimen/dp_156"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="@string/signature"
                 android:textColor="@color/c_333"

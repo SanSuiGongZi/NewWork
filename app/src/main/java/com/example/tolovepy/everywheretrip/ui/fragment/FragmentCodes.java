@@ -2,9 +2,10 @@ package com.example.tolovepy.everywheretrip.ui.fragment;
 
 
 import android.content.Intent;
-import android.os.Handler;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,9 +15,11 @@ import android.widget.TextView;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseApp;
 import com.example.tolovepy.everywheretrip.base.BaseFragment;
+import com.example.tolovepy.everywheretrip.base.Constants;
 import com.example.tolovepy.everywheretrip.mvp.presenter.CodePre;
 import com.example.tolovepy.everywheretrip.mvp.view.CodeView;
 import com.example.tolovepy.everywheretrip.ui.activity.IdentifyingCodeView;
+import com.example.tolovepy.everywheretrip.ui.activity.LoginActivity;
 import com.example.tolovepy.everywheretrip.ui.activity.MainActivity;
 
 import butterknife.BindView;
@@ -38,8 +41,16 @@ public class FragmentCodes extends BaseFragment<CodeView, CodePre> implements Co
     ImageView imgStart;
     @BindView(R.id.tv_send_again)
     TextView tvSendAgain;
-    private int time = 10;
-    private Handler mHandler = new Handler();
+    private int mTime;
+
+    public static FragmentCodes getNewCode(String code) {
+        FragmentCodes codes = new FragmentCodes();
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.VERIFY_CODE, code);
+        codes.setArguments(bundle);
+        return codes;
+    }
+
 
     public FragmentCodes() {
         // Required empty public constructor
@@ -57,36 +68,30 @@ public class FragmentCodes extends BaseFragment<CodeView, CodePre> implements Co
 
     @Override
     protected void initView() {
-        mPresenter.getCode();
-        mHandler.post(mRunnable);
+        //获取传过来的验证码
+        String string = getArguments().getString(Constants.VERIFY_CODE);
+        setCode(string);
     }
 
-    //倒计时重新获取验证码
-    private Runnable mRunnable = new Runnable() {
-        @Override
-        public void run() {
-            time--;
-            if (time>0){
-                mHandler.postDelayed(mRunnable,1000);
-                tvSendAgain.setText("重新发送("+time+")");
+    public void autoLogin(int time) {
+        mTime = time;
+        if (tvSendAgain != null) {
+            if (time != 0) {
+                String format = String.format(getResources().getString(R.string.send_newAgain) + "(%ss)", mTime);
+                tvSendAgain.setText(format);
+                tvSendAgain.setTextColor(getResources().getColor(R.color.c_999));
             }else {
-                tvSendAgain.setText(R.string.send_newAgain);
-                tvSendAgain.setTextColor(getResources().getColor(R.color.c_fa6a13));
-                tvSendAgain.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        time=10;
-                        tvSendAgain.setTextColor(getResources().getColor(R.color.c_999));
-                        initView();
-                    }
-                });
+                tvSendAgain.setText(getResources().getString(R.string.send_newAgain));
+                tvSendAgain.setTextColor(getResources().getColor(R.color.c_FA6A13));
             }
         }
-    };
+    }
 
     @Override
     public void setCode(String code) {
-        tvWait.setText("验证码:" + code);
+        if (!TextUtils.isEmpty(code) && tvWait != null) {
+            tvWait.setText("验证码:" + code);
+        }
     }
 
     @Override
@@ -101,6 +106,14 @@ public class FragmentCodes extends BaseFragment<CodeView, CodePre> implements Co
                 pop();
                 break;
             case R.id.tv_send_again:
+                if (mTime == 0) {
+                    mPresenter.getCode();
+                    //重新发起倒计时
+                    Fragment_login fragment = (Fragment_login) getActivity().getSupportFragmentManager().findFragmentByTag(LoginActivity.TAG);
+                    //调用倒计时
+                    fragment.countDown();
+
+                }
                 break;
         }
     }
@@ -135,8 +148,24 @@ public class FragmentCodes extends BaseFragment<CodeView, CodePre> implements Co
             icv.setBackgroundEnter(false);
             tvWait.setText(BaseApp.getRes().getString(R.string.wait_please));
             showLoading();
-            startActivity(new Intent(getActivity(), MainActivity.class));
-            hideLoading();
+            new Thread(){
+                @Override
+                public void run() {
+                    super.run();
+
+                    try {
+                        sleep(3000);
+
+                        startActivity(new Intent(getActivity(), MainActivity.class));
+                        getActivity().finish();
+                        hideLoading();
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }.start();
         }
     }
 }

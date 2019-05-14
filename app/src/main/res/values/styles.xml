@@ -23,16 +23,29 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorNoPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryNoDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
     <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:windowFullscreen">false</item>
         <item name="colorPrimary">@color/c_FEFEFE</item>
         <item name="colorPrimaryDark">@color/colorPrimaryNoDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="GuideTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--全屏界面-->
+    <style name="FullScarean" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--将用于配置到特定的Activity上的样式-->
+    <style name="SplashStyle" parent="FullScarean">
+        <item name="android:windowBackground">@drawable/layer_splash</item>
+    </style>
+
 </resources>

@@ -10,11 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.tolovepy.everywheretrip.R;
-import com.example.tolovepy.everywheretrip.bean.BanmiBean;
-import com.example.tolovepy.everywheretrip.ui.api.MyGreenDao;
-import com.example.tolovepy.everywheretrip.util.ToastUtil;
+import com.example.tolovepy.everywheretrip.bean.StayBeans;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.List;
 public class MyAdapterStay extends RecyclerView.Adapter<MyAdapterStay.ViewHolder> {
 
     private Context context;
-    private ArrayList<BanmiBean> list = new ArrayList<>();
+    private ArrayList<StayBeans.ResultBean.BanmiBean> list = new ArrayList<>();
     private boolean mBoolean;
 
     public MyAdapterStay(Context context, boolean aBoolean) {
@@ -30,11 +29,7 @@ public class MyAdapterStay extends RecyclerView.Adapter<MyAdapterStay.ViewHolder
         this.mBoolean = aBoolean;
     }
 
-    public void setAdapterStay(){
-        notifyDataSetChanged();
-    }
-
-    public void addList(List<BanmiBean> lists) {
+    public void addList(List<StayBeans.ResultBean.BanmiBean> lists) {
         if (lists != null) {
             list.clear();
             list.addAll(lists);
@@ -52,12 +47,12 @@ public class MyAdapterStay extends RecyclerView.Adapter<MyAdapterStay.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
-        final BanmiBean bean = list.get(i);
+        final StayBeans.ResultBean.BanmiBean bean = list.get(i);
         viewHolder.mTv_name_stay.setText(bean.getName());
         viewHolder.tv_person.setText(bean.getId() + "人关注");
         viewHolder.mTv_region.setText(bean.getLocation());
         viewHolder.mTv_status.setText(bean.getOccupation());
-        RequestOptions options = RequestOptions.placeholderOf(R.mipmap.ee);
+        RequestOptions options = RequestOptions.bitmapTransform(new RoundedCorners(15)).placeholderOf(R.mipmap.ee);
         Glide.with(context).load(bean.getPhoto()).apply(options).into(viewHolder.img_stay);
 
         if (mBoolean) {
@@ -66,7 +61,9 @@ public class MyAdapterStay extends RecyclerView.Adapter<MyAdapterStay.ViewHolder
             viewHolder.mImg.setVisibility(View.INVISIBLE);
         }
 
-        if (MyGreenDao.queryOnly(bean) != null) {
+        boolean isFollowed = bean.isIsFollowed();
+
+        if (isFollowed) {
             Glide.with(context).load(R.mipmap.follow).into(viewHolder.mImg);
         } else {
             Glide.with(context).load(R.mipmap.follow_unselected).into(viewHolder.mImg);
@@ -75,26 +72,31 @@ public class MyAdapterStay extends RecyclerView.Adapter<MyAdapterStay.ViewHolder
         viewHolder.mImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyGreenDao.insert(bean);
-                if (MyGreenDao.queryOnly(bean) != null) {
-                    ToastUtil.showShort("收藏成功");
-                    Glide.with(context).load(R.mipmap.follow).into(viewHolder.mImg);
-                } else {
-                    Glide.with(context).load(R.mipmap.follow_unselected).into(viewHolder.mImg);
+                if (mOnImg != null) {
+                    mOnImg.onItemImg(i);
                 }
-                notifyDataSetChanged();
             }
         });
 
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if (mOnClick!=null){
-                    mOnClick.onItemClick(bean,i);
+                if (mOnClick != null) {
+                    mOnClick.onItemClick(bean, i);
                 }
                 return false;
             }
         });
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClick != null) {
+                    mOnItemClick.onItemsClick(bean, i);
+                }
+            }
+        });
+
 
     }
 
@@ -129,8 +131,28 @@ public class MyAdapterStay extends RecyclerView.Adapter<MyAdapterStay.ViewHolder
         mOnClick = onClick;
     }
 
-    public interface OnClick{
-        void onItemClick(BanmiBean banmiBean , int position);
+    public interface OnClick {
+        void onItemClick(StayBeans.ResultBean.BanmiBean banmiBean, int position);
+    }
+
+    private OnImg mOnImg;
+
+    public void setOnImg(OnImg onImg) {
+        mOnImg = onImg;
+    }
+
+    public interface OnImg {
+        void onItemImg(int position);
+    }
+
+    private OnItemClick mOnItemClick;
+
+    public void setOnItemClick(OnItemClick onItemClick) {
+        mOnItemClick = onItemClick;
+    }
+
+    public interface OnItemClick {
+        void onItemsClick(StayBeans.ResultBean.BanmiBean banmiBean, int position);
     }
 
 }

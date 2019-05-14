@@ -1,7 +1,8 @@
 package com.example.tolovepy.everywheretrip.mvp.presenter;
 
 import com.example.tolovepy.everywheretrip.base.BasePresenter;
-import com.example.tolovepy.everywheretrip.bean.DemoBean;
+import com.example.tolovepy.everywheretrip.bean.BalanceBean;
+import com.example.tolovepy.everywheretrip.bean.MessageBean;
 import com.example.tolovepy.everywheretrip.mvp.model.Model;
 import com.example.tolovepy.everywheretrip.mvp.view.IView;
 import com.example.tolovepy.everywheretrip.net.ResultCallBack;
@@ -17,15 +18,37 @@ public class Presenter extends BasePresenter<IView> {
     }
 
     public void getModel(){
-        model.getVerifyCode(new ResultCallBack<DemoBean>() {
+        model.getBalance(new ResultCallBack<BalanceBean>() {
             @Override
-            public void onSuccess(DemoBean bean) {
-
+            public void onSuccess(BalanceBean bean) {
+                    if (mMvpView!=null){
+                        mMvpView.setBalance(bean);
+                    }
             }
 
             @Override
             public void onFail(String msg) {
+                if (mMvpView!=null){
+                    mMvpView.setError(msg);
+                }
+            }
+        });
+    }
 
+    public void newData() {
+        model.newMessage(new ResultCallBack<MessageBean>() {
+            @Override
+            public void onSuccess(MessageBean bean) {
+                if (bean != null) {
+                    if (mMvpView != null) {
+                        mMvpView.setMessage(bean);
+                    }
+                }
+            }
+
+            @Override
+            public void onFail(String msg) {
+                mMvpView.setError(msg);
             }
         });
     }

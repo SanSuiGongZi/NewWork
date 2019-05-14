@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.activity.DetailsActivity">
+
+    <ScrollView
+        android:layout_above="@id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/mIV_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_308"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ee" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_52"
+                android:layout_margin="@dimen/dp_21">
+
+                <ImageView
+                    android:id="@+id/mIV_photo"
+                    android:layout_width="@dimen/dp_52"
+                    android:layout_height="@dimen/dp_52"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ee" />
+
+                <TextView
+                    android:id="@+id/mTv_name_de"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_22"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_toRightOf="@id/mIV_photo"
+                    android:textColor="@color/c_373737"
+                    android:textSize="@dimen/sp_16" />
+
+                <TextView
+                    android:id="@+id/mTv_profession"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_16"
+                    android:layout_below="@id/mTv_name_de"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_toRightOf="@id/mIV_photo"
+                    android:textColor="@color/c_636363"
+                    android:textSize="@dimen/sp_11" />
+
+                <TextView
+                    android:id="@+id/mTv_area_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_14"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/c_999"
+                    android:textSize="@dimen/sp_10" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/mTv_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_marginLeft="@dimen/dp_21"
+                android:layout_marginRight="@dimen/dp_21"
+                android:textColor="@color/c_636363"
+                android:layout_marginBottom="@dimen/dp_45"
+                android:textSize="@dimen/sp_14" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_20"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_38"
+                    android:layout_marginLeft="@dimen/dp_20">
+
+                    <ImageView
+                        android:id="@+id/mIV_photo_comment"
+                        android:layout_width="@dimen/dp_38"
+                        android:layout_height="@dimen/dp_38"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/ee" />
+
+                    <TextView
+                        android:id="@+id/mTv_name_comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_marginLeft="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_toRightOf="@id/mIV_photo_comment"
+                        android:textColor="@color/c_373737"
+                        android:textSize="@dimen/sp_14" />
+
+                    <TextView
+                        android:id="@+id/mTv_profession_comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_14"
+                        android:layout_below="@id/mTv_name_comment"
+                        android:layout_marginLeft="@dimen/dp_20"
+                        android:layout_toRightOf="@id/mIV_photo_comment"
+                        android:textColor="@color/c_999"
+                        android:textSize="@dimen/dp_10" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/mTv_str_comment"
+                    android:textColor="@color/c_636363"
+                    android:textSize="@dimen/sp_14"
+                    android:layout_marginRight="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_9"
+                    android:layout_marginLeft="@dimen/dp_67"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:background="@color/c_dc"
+                    android:layout_marginTop="@dimen/dp_22"
+                    android:layout_marginLeft="@dimen/dp_58"
+                    android:layout_marginRight="@dimen/dp_11"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"/>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_38"
+                    android:layout_marginLeft="@dimen/dp_20">
+
+                    <ImageView
+                        android:id="@+id/mIV_photo_comment02"
+                        android:layout_width="@dimen/dp_38"
+                        android:layout_height="@dimen/dp_38"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/ee" />
+
+                    <TextView
+                        android:id="@+id/mTv_name_comment02"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_marginLeft="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_toRightOf="@id/mIV_photo_comment02"
+                        android:textColor="@color/c_373737"
+                        android:textSize="@dimen/sp_14" />
+
+                    <TextView
+                        android:id="@+id/mTv_profession_comment02"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_14"
+                        android:layout_below="@id/mTv_name_comment02"
+                        android:layout_marginLeft="@dimen/dp_20"
+                        android:layout_toRightOf="@id/mIV_photo_comment02"
+                        android:textColor="@color/c_999"
+                        android:textSize="@dimen/dp_10" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/mTv_str_comment02"
+                    android:textColor="@color/c_636363"
+                    android:textSize="@dimen/sp_14"
+                    android:layout_marginRight="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_9"
+                    android:layout_marginLeft="@dimen/dp_67"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:background="@color/c_dc"
+                    android:layout_marginTop="@dimen/dp_22"
+                    android:layout_marginLeft="@dimen/dp_58"
+                    android:layout_marginRight="@dimen/dp_11"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"/>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_38"
+                    android:layout_marginLeft="@dimen/dp_20">
+
+                    <ImageView
+                        android:id="@+id/mIV_photo_comment03"
+                        android:layout_width="@dimen/dp_38"
+                        android:layout_height="@dimen/dp_38"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/ee" />
+
+                    <TextView
+                        android:id="@+id/mTv_name_comment03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_marginLeft="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_toRightOf="@id/mIV_photo_comment03"
+                        android:textColor="@color/c_373737"
+                        android:textSize="@dimen/sp_14" />
+
+                    <TextView
+                        android:id="@+id/mTv_profession_comment03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_14"
+                        android:layout_below="@id/mTv_name_comment03"
+                        android:layout_marginLeft="@dimen/dp_20"
+                        android:layout_toRightOf="@id/mIV_photo_comment03"
+                        android:textColor="@color/c_999"
+                        android:textSize="@dimen/dp_10" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/mTv_str_comment03"
+                    android:textColor="@color/c_636363"
+                    android:textSize="@dimen/sp_14"
+                    android:layout_marginRight="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_9"
+                    android:layout_marginLeft="@dimen/dp_67"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:background="@color/c_dc"
+                    android:layout_marginTop="@dimen/dp_22"
+                    android:layout_marginLeft="@dimen/dp_58"
+                    android:layout_marginRight="@dimen/dp_11"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/mTv_evaluate"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_20"
+                android:gravity="center"
+                android:text="@string/details"
+                android:textColor="@color/c_999"
+                android:textSize="@dimen/sp_14" />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp_33"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_30"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/mBtn_share"
+                    android:layout_width="@dimen/dp_80"
+                    android:layout_height="@dimen/dp_28"
+                    android:background="@drawable/redioitem"
+                    android:drawableLeft="@mipmap/share_button"
+                    android:paddingLeft="@dimen/dp_15"
+                    android:paddingRight="@dimen/dp_15"
+                    android:text="@string/share"
+                    android:textColor="@color/c_636363"
+                    android:textSize="@dimen/sp_14" />
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/dp_60"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/mBtn_collect"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="@dimen/dp_28"
+                        android:visibility="visible"
+                        android:background="@drawable/redioitem"
+                        android:drawableLeft="@mipmap/collect_default"
+                        android:paddingLeft="@dimen/dp_15"
+                        android:paddingRight="@dimen/dp_15"
+                        android:text="@string/collects"
+                        android:textColor="@color/c_636363"
+                        android:textSize="@dimen/sp_14" />
+
+                    <Button
+                        android:id="@+id/mBtn_collects"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="@dimen/dp_28"
+                        android:visibility="gone"
+                        android:background="@drawable/redioitem"
+                        android:drawableLeft="@mipmap/collect_highlight"
+                        android:paddingLeft="@dimen/dp_15"
+                        android:paddingRight="@dimen/dp_15"
+                        android:text="@string/Okcollects"
+                        android:textColor="@color/c_636363"
+                        android:textSize="@dimen/sp_14" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_104"
+        android:background="@color/c_e0">
+
+        <TextView
+            android:id="@+id/mTv_area_de"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_13"
+            android:layout_marginTop="@dimen/dp_13"
+            android:textColor="@color/c_999"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/mTv_title_de"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mTv_area_de"
+            android:layout_marginLeft="@dimen/dp_13"
+            android:textColor="@color/c_373737"
+            android:textSize="@dimen/sp_26" />
+
+        <TextView
+            android:id="@+id/mTv_str_de"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/dp_13"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mTv_title_de"
+            android:textColor="@color/c_636363"
+            android:textSize="@dimen/sp_18" />
+
+        <ImageView
+            android:id="@+id/mIv_de"
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/dp_13"
+            android:src="@mipmap/w" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:background="@color/c_ffffff"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/mBtn_circuit"
+                android:layout_width="@dimen/dp_112"
+                android:layout_height="@dimen/dp_38"
+                android:background="@drawable/redioitems"
+                android:gravity="center"
+                android:text="@string/preview"
+                android:textColor="@color/c_FA6A13"
+                android:textSize="@dimen/sp_15" />
+
+            <Button
+                android:id="@+id/mBtn_price"
+                android:layout_width="@dimen/dp_112"
+                android:layout_height="@dimen/dp_38"
+                android:layout_marginLeft="@dimen/dp_60"
+                android:background="@drawable/rediobutton"
+                android:gravity="center"
+                android:text="@string/cost"
+                android:textColor="@color/c_ffffff"
+                android:textSize="@dimen/sp_15" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/mBtn_buy"
+            android:text="@string/Start_Details"
+            android:textColor="@color/c_ffffff"
+            android:textSize="@dimen/sp_15"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:background="@drawable/rediobutton"
+            android:layout_width="@dimen/dp_220"
+            android:layout_height="@dimen/dp_38" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.bean.MainBean;
 import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
@@ -72,6 +73,7 @@ public class MyAdapterHome extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             ViewHolderBann holder = (ViewHolderBann) viewHolder;
             holder.mBar.setImages(bannerList);
+            holder.mBar.setBannerStyle(BannerConfig.NOT_INDICATOR);
             holder.mBar.setImageLoader(new ImageLoader() {
                 @Override
                 public void displayImage(Context context, Object path, ImageView imageView) {
@@ -88,18 +90,39 @@ public class MyAdapterHome extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 position = i;
             }
 
-            MainBean.ResultBean.RoutesBean bean = dataList.get(position);
+            final MainBean.ResultBean.RoutesBean bean = dataList.get(position);
             if (!bean.getType().equals("bundle")) {
                 ViewHolderData holder = (ViewHolderData) viewHolder;
                 holder.mTv_title.setText(bean.getTitle());
                 holder.mTv_area.setText(bean.getCity());
                 holder.mTv_str.setText(bean.getIntro());
-                holder.mTv_quantity.setText(bean.getPurchasedTimes() + "");
+                holder.mTv_quantity.setText(bean.getPurchasedTimes() + "人关注");
                 holder.mBtn_price.setText("¥" + bean.getPrice());
                 Glide.with(context).load(bean.getCardURL()).into(holder.mImg_back);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mOnClickDetails!=null){
+                            mOnClickDetails.onClickDetails(bean.getId());
+                        }
+
+                    }
+                });
+
             }else {
                 ViewHolderDatas holder = (ViewHolderDatas) viewHolder;
                 Glide.with(context).load(bean.getCardURL()).into(holder.mIv_home);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mOnClickWeb!=null){
+                            mOnClickWeb.onClickWeb(bean.getContentURL(),bean.getTitle());
+                        }
+                    }
+                });
+
             }
 
         }
@@ -175,6 +198,26 @@ public class MyAdapterHome extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             super(itemView);
             mIv_home = itemView.findViewById(R.id.mIv_home);
         }
+    }
+
+    private OnClickDetails mOnClickDetails;
+
+    public void setOnClickDetails(OnClickDetails onClickDetails) {
+        mOnClickDetails = onClickDetails;
+    }
+
+    public interface OnClickDetails{
+        void onClickDetails(int id);
+    }
+
+    private OnClickWeb mOnClickWeb;
+
+    public void setOnClickWeb(OnClickWeb onClickWeb) {
+        mOnClickWeb = onClickWeb;
+    }
+
+    public interface OnClickWeb{
+        void onClickWeb(String link , String title);
     }
 
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.GuideActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/mVp_guide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
+    <TextView
+        android:id="@+id/mTv_guide"
+        android:textColor="@color/c_78d9ff"
+        android:textSize="@dimen/sp_30"
+        android:text="@string/guide01"
+        android:layout_marginTop="@dimen/dp_100"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.example.tolovepy.everywheretrip.widget.PreviewIndicator
+        android:id="@+id/mPir"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/dp_50"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.example.tolovepy.everywheretrip.widget.PreviewIndicator>
+
+    <Button
+        android:id="@+id/mBtn_guide"
+        android:visibility="invisible"
+        android:text="@string/experience"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/c_ffffff"
+        android:layout_margin="@dimen/dp_50"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rediobutton"
+        android:layout_width="@dimen/dp_127"
+        android:layout_height="@dimen/dp_40" />
+
+</RelativeLayout>

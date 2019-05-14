@@ -21,6 +21,8 @@ import com.example.tolovepy.everywheretrip.mvp.view.CodeView;
 import com.example.tolovepy.everywheretrip.ui.activity.IdentifyingCodeView;
 import com.example.tolovepy.everywheretrip.ui.activity.LoginActivity;
 import com.example.tolovepy.everywheretrip.ui.activity.MainActivity;
+import com.example.tolovepy.everywheretrip.util.SpUtil;
+import com.example.tolovepy.everywheretrip.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,6 +44,7 @@ public class FragmentCodes extends BaseFragment<CodeView, CodePre> implements Co
     @BindView(R.id.tv_send_again)
     TextView tvSendAgain;
     private int mTime;
+    private String codes;
 
     public static FragmentCodes getNewCode(String code) {
         FragmentCodes codes = new FragmentCodes();
@@ -80,7 +83,7 @@ public class FragmentCodes extends BaseFragment<CodeView, CodePre> implements Co
                 String format = String.format(getResources().getString(R.string.send_newAgain) + "(%ss)", mTime);
                 tvSendAgain.setText(format);
                 tvSendAgain.setTextColor(getResources().getColor(R.color.c_999));
-            }else {
+            } else {
                 tvSendAgain.setText(getResources().getString(R.string.send_newAgain));
                 tvSendAgain.setTextColor(getResources().getColor(R.color.c_FA6A13));
             }
@@ -91,6 +94,8 @@ public class FragmentCodes extends BaseFragment<CodeView, CodePre> implements Co
     public void setCode(String code) {
         if (!TextUtils.isEmpty(code) && tvWait != null) {
             tvWait.setText("验证码:" + code);
+            codes = code;
+            SpUtil.setParam(Constants.CODEMAIN, code);
         }
     }
 
@@ -146,26 +151,40 @@ public class FragmentCodes extends BaseFragment<CodeView, CodePre> implements Co
         if (icv.getTextContent().length() >= 4) {
             //自动登录
             icv.setBackgroundEnter(false);
-            tvWait.setText(BaseApp.getRes().getString(R.string.wait_please));
+            String content = icv.getTextContent();
             showLoading();
-            new Thread(){
-                @Override
-                public void run() {
-                    super.run();
+            if (content.equals(codes)) {
+                tvWait.setText(BaseApp.getRes().getString(R.string.wait_please));
 
-                    try {
-                        sleep(3000);
+                String token = (String) SpUtil.getParam(Constants.TOKEN, "");
+                if (!TextUtils.isEmpty(token)) {
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            super.run();
 
-                        startActivity(new Intent(getActivity(), MainActivity.class));
-                        getActivity().finish();
-                        hideLoading();
+                            try {
+                                sleep(3000);
+                                startActivity(new Intent(getActivity(), MainActivity.class));
+                                getActivity().finish();
+                                hideLoading();
 
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
 
+                        }
+                    }.start();
+                } else {
+                    ToastUtil.showShort("抱歉注册失败,无法进去App");
+                    icv.clearAllText();
+                    hideLoading();
                 }
-            }.start();
+            } else {
+                ToastUtil.showShort("验证码输入错误");
+                icv.clearAllText();
+                hideLoading();
+            }
         }
     }
 }

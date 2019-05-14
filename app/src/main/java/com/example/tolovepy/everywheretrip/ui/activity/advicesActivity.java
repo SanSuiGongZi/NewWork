@@ -12,8 +12,8 @@ import android.widget.Toast;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseActivity;
 import com.example.tolovepy.everywheretrip.bean.InformBean;
-import com.example.tolovepy.everywheretrip.mvp.presenter.Presenter;
-import com.example.tolovepy.everywheretrip.mvp.view.IView;
+import com.example.tolovepy.everywheretrip.mvp.presenter.EmptyPre;
+import com.example.tolovepy.everywheretrip.mvp.view.EmptyView;
 import com.example.tolovepy.everywheretrip.ui.adapter.MyAdapter;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuBridge;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 
-public class advicesActivity extends BaseActivity<IView, Presenter> implements IView {
+public class advicesActivity extends BaseActivity<EmptyView, EmptyPre> implements EmptyView {
 
     @BindView(R.id.mImg_T1)
     ImageView mImgT1;
@@ -41,8 +41,8 @@ public class advicesActivity extends BaseActivity<IView, Presenter> implements I
     private MyAdapter adapter;
 
     @Override
-    protected Presenter initPresenter() {
-        return new Presenter();
+    protected EmptyPre initPresenter() {
+        return new EmptyPre();
     }
 
     @Override

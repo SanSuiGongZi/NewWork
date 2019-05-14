@@ -37,4 +37,9 @@ public interface Constants {
     String PHONE = "phone";
     String TYPE = "type";
     String VERIFY_CODE = "code";
+    String BOOLEAN = "false";
+    String CODEMAIN = "0";
+    String BALANCE = "0.00";
+    String ISCOLLECTION = "true";
+    String ISATTEN = "false";
 }

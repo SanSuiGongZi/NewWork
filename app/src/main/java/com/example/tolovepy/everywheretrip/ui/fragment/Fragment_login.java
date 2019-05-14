@@ -31,6 +31,7 @@ import com.example.tolovepy.everywheretrip.mvp.presenter.MessagePre;
 import com.example.tolovepy.everywheretrip.mvp.view.MessageView;
 import com.example.tolovepy.everywheretrip.ui.activity.MainActivity;
 import com.example.tolovepy.everywheretrip.ui.activity.WebViewActivity;
+import com.example.tolovepy.everywheretrip.util.SpUtil;
 import com.example.tolovepy.everywheretrip.util.ToastUtil;
 import com.example.tolovepy.everywheretrip.util.Tools;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -76,7 +77,6 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
         return login;
     }
 
-
     @Override
     protected MessagePre initPresenter() {
         return new MessagePre();
@@ -89,6 +89,7 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
 
     @Override
     protected void initView() {
+
         getArgumentsData();
         protocol();
         initI();
@@ -191,9 +192,14 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
                 mPresenter.oauthLogin(SHARE_MEDIA.SINA);
                 break;
             case R.id.btn_Verification:
-                getCode();
-                AddVerifyFragment();
-                timer();
+                String trim = mEt.getText().toString().trim();
+                if (!trim.equals("")){
+                    getCode();
+                    AddVerifyFragment();
+                    timer();
+                }else {
+                    ToastUtil.showShort("手机号码不能为空");
+                }
                 break;
         }
     }
@@ -234,6 +240,8 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
     private void getCode() {
         if (time>0&&time<COUNT_DOWN_TIME-1){
             //正在处于倒计时中
+            String codes = (String) SpUtil.getParam(Constants.CODEMAIN, "");
+            mVerifyCode= codes;
             return;
         }else {
             mVerifyCode ="";
@@ -282,7 +290,7 @@ public class Fragment_login extends BaseFragment<MessageView, MessagePre> implem
     @Override
     public void setCode(String c) {
         this.mVerifyCode = c;
-        if (mVerifyCode!=null){
+        if (!c.equals("")){
             mCodes.setCode(c);
         }
     }

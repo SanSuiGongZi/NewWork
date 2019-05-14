@@ -54,7 +54,7 @@ public abstract class BaseActivity<V extends BaseMvpView,P extends BasePresenter
 
     protected void initView(){
 
-    };
+    }
 
     protected abstract int getLayoutId();
 

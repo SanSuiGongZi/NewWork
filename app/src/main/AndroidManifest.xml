@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -24,13 +25,7 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:theme="@style/Theme"
-            android:windowSoftInputMode="stateVisible|adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="stateVisible|adjustResize" />
 
         <!-- 新浪微博 - start -->
         <activity
@@ -100,16 +95,60 @@
             android:theme="@style/Theme" />
         <activity
             android:name=".ui.activity.WebViewActivity"
-            android:theme="@style/MyTheme" />
+            android:theme="@style/MainTheme" />
         <activity
             android:name=".ui.activity.MessageActivity"
-            android:theme="@style/MyTheme" />
+            android:theme="@style/MainTheme" />
         <activity
             android:name=".ui.activity.Personage_DataActivity"
             android:theme="@style/MainTheme" />
-        <activity android:name=".ui.activity.CollectActivity" />
-        <activity android:name=".ui.activity.HeadActivity"
-            android:theme="@style/MainTheme"></activity>
+        <!-- 我的关注 -->
+        <activity
+            android:name=".ui.activity.AttentionActivity"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name=".ui.activity.HeadActivity"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name=".ui.activity.GuideActivity"
+            android:theme="@style/FullScarean" />
+        <activity
+            android:name=".ui.activity.SplashActivity"
+            android:theme="@style/SplashStyle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.baidu.upload.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".ui.activity.DetailsActivity"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name=".ui.activity.CollectionActivity"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name=".ui.activity.WithDetailsActivity"
+            android:theme="@style/MainTheme" />
+
+        <meta-data
+            android:name="channel"
+            android:value="${CHANNEL_VALUE}" />
+
+        <activity
+            android:name=".ui.activity.CommentActivity"
+            android:theme="@style/MainTheme" />
     </application>
 
 </manifest>

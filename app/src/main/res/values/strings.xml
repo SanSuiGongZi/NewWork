@@ -9,7 +9,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="send_again">重新发送(60s)</string>
+    <string name="send_again">重新发送(10s)</string>
     <string name="send_newAgain">重新发送</string>
     <string name="input_code">请输入验证码</string>
     <string name="wait_please">请稍后...</string>
@@ -31,7 +31,7 @@
     <string name="no_signature">没有设置签名</string>
     <string name="touist">游客</string>
     <string name="unit">元</string>
-    <string name="money">99</string>
+    <string name="money">0.00</string>
     <string name="bonus">赢取奖金</string>
     <string name="coupon">我的卡券</string>
     <string name="journey">已购行程</string>
@@ -64,4 +64,19 @@
     <string name="photo">相册</string>
     <string name="camera">相机</string>
     <string name="myPhoto">个人头像</string>
+    <string name="experience">立即体验</string>
+    <string name="guide01">严选当地人的私藏路线</string>
+    <string name="guide02">智能语音实时导览</string>
+    <string name="guide03">智能地图为你指路</string>
+    <string name="collects">收藏</string>
+    <string name="Okcollects">已收藏</string>
+    <string name="OkAttention">已关注</string>
+    <string name="Attention">未关注</string>
+    <string name="share">分享</string>
+    <string name="cost">¥</string>
+    <string name="details">查看全部评论</string>
+    <string name="withdetails">伴米详情</string>
+    <string name="Start_Details">开始线路</string>
+    <string name="allComment">所有评论</string>
+    <string name="preview">预览线路</string>
 </resources>

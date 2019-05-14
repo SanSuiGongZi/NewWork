@@ -51,11 +51,12 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/mNv"
-        app:headerLayout="@layout/item_header"
+        android:background="@color/transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="left">
 
+        <include layout="@layout/item_header"/>
 
     </android.support.design.widget.NavigationView>
 

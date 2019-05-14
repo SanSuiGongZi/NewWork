@@ -8,8 +8,8 @@ import android.widget.ImageButton;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseActivity;
 import com.example.tolovepy.everywheretrip.bean.DetailsBean;
-import com.example.tolovepy.everywheretrip.mvp.presenter.Presenter;
-import com.example.tolovepy.everywheretrip.mvp.view.IView;
+import com.example.tolovepy.everywheretrip.mvp.presenter.EmptyPre;
+import com.example.tolovepy.everywheretrip.mvp.view.EmptyView;
 import com.example.tolovepy.everywheretrip.ui.adapter.DetailsRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DetailsActivityActivity extends BaseActivity<IView, Presenter> implements IView {
+public class DetailsActivityActivity extends BaseActivity<EmptyView, EmptyPre> implements EmptyView {
 
     @BindView(R.id.back)
     ImageButton back;
@@ -29,8 +29,8 @@ public class DetailsActivityActivity extends BaseActivity<IView, Presenter> impl
     private DetailsRecyclerViewAdapter detailsRecyclerViewAdapter;
 
     @Override
-    protected Presenter initPresenter() {
-        return new Presenter();
+    protected EmptyPre initPresenter() {
+        return new EmptyPre();
     }
 
     @Override

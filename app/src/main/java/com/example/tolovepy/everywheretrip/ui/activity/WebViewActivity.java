@@ -3,9 +3,7 @@ package com.example.tolovepy.everywheretrip.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,7 +13,6 @@ import com.example.tolovepy.everywheretrip.mvp.presenter.EmptyPre;
 import com.example.tolovepy.everywheretrip.mvp.view.EmptyView;
 import com.jaeger.library.StatusBarUtil;
 import com.just.agentweb.AgentWeb;
-import com.just.agentweb.WebChromeClient;
 
 import butterknife.BindView;
 
@@ -41,15 +38,25 @@ public class WebViewActivity extends BaseActivity<EmptyView, EmptyPre> implement
 
     public static void startAct(Context context) {
         Intent intent = new Intent(context, WebViewActivity.class);
+        intent.putExtra("data", "用户协议");
+        intent.putExtra("label", 1);
         context.startActivity(intent);
     }
 
     @Override
     protected void initView() {
         StatusBarUtil.setLightMode(this);
+
         mToolWeb.setTitle("");
         mToolWeb.setNavigationIcon(R.mipmap.back_white);
         setSupportActionBar(mToolWeb);
+
+        Intent intent = getIntent();
+        String data = intent.getStringExtra("data");
+        int label = intent.getIntExtra("label", 0);
+        String id = intent.getStringExtra("ids");
+        mTvTool.setText(data);
+
         mToolWeb.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,12 +64,22 @@ public class WebViewActivity extends BaseActivity<EmptyView, EmptyPre> implement
             }
         });
 
-        web = AgentWeb.with(this)
-                .setAgentWebParent(mLlWeb, new LinearLayout.LayoutParams(-1, -1))
-                .useDefaultIndicator()
-                .createAgentWeb()
-                .ready()
-                .go("https://api.banmi.com/app2017/agreement.html");
+        if (label == 1) {
+            web = AgentWeb.with(this)
+                    .setAgentWebParent(mLlWeb, new LinearLayout.LayoutParams(-1, -1))
+                    .closeIndicator()
+                    .createAgentWeb()
+                    .ready()
+                    .go("https://api.banmi.com/app2017/agreement.html");
+            //.useDefaultIndicator()
+        } else {
+            web = AgentWeb.with(this)
+                    .setAgentWebParent(mLlWeb, new LinearLayout.LayoutParams(-1, -1))
+                    .closeIndicator()
+                    .createAgentWeb()
+                    .ready()
+                    .go(id);
+        }
 
          /*new WebView(this).setWebChromeClient(new WebChromeClient(){
             @Override
@@ -72,15 +89,15 @@ public class WebViewActivity extends BaseActivity<EmptyView, EmptyPre> implement
             }
         });*/
 
-        web.getWebCreator().getWebView().setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onReceivedTitle(WebView view, String title) {
-                if (!TextUtils.isEmpty(title)) {
-                    mTvTool.setText(title);
-                }
-                super.onReceivedTitle(view, title);
-            }
-        });
+//        web.getWebCreator().getWebView().setWebChromeClient(new WebChromeClient() {
+//            @Override
+//            public void onReceivedTitle(WebView view, String title) {
+//                if (!TextUtils.isEmpty(title)) {
+//                    mTvTool.setText(title);
+//                }
+//                super.onReceivedTitle(view, title);
+//            }
+//        });
 
     }
 

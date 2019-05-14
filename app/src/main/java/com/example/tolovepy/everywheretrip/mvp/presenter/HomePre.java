@@ -16,12 +16,12 @@ public class HomePre extends BasePresenter<HomeView> {
         mModels.add(model);
     }
 
-    public void getPre(){
-        model.model(new ResultCallBack<MainBean>() {
+    public void getPre(int page) {
+        model.model(page, new ResultCallBack<MainBean>() {
             @Override
             public void onSuccess(MainBean bean) {
-                if (bean!=null){
-                    if (mMvpView!=null){
+                if (bean != null) {
+                    if (mMvpView != null) {
                         mMvpView.getData(bean);
                     }
                 }

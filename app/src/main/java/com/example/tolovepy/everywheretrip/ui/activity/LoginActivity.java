@@ -14,6 +14,7 @@ import com.example.tolovepy.everywheretrip.mvp.presenter.EmptyPre;
 import com.example.tolovepy.everywheretrip.mvp.view.EmptyView;
 import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_login;
 import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareConfig;
 
 import butterknife.BindView;
 
@@ -49,7 +50,13 @@ public class LoginActivity extends BaseActivity<EmptyView, EmptyPre> implements 
 
     @Override
     protected void initView() {
+
+        UMShareConfig config = new UMShareConfig();
+        config.isNeedAuthOnGetUserInfo(true);
+        UMShareAPI.get(this).setShareConfig(config);
+
         initPer();
+
         int extra = getIntent().getIntExtra(Constants.TYPE, TYPE_LOGIN);
         Fragment_login newLogin = Fragment_login.newLogin(extra);
         FragmentManager manager = getSupportFragmentManager();

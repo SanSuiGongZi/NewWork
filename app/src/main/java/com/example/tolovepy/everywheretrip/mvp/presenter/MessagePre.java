@@ -131,6 +131,7 @@ public class MessagePre extends BasePresenter<MessageView> {
                     saveUserInfo(bean.getResult());
                     if (mMvpView != null){
                         mMvpView.toastShort(BaseApp.getRes().getString(R.string.login_success));
+
                         mMvpView.goMainActivity();
 
                     }

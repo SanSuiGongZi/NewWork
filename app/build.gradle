@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao' // apply plugin
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -12,10 +11,27 @@ android {
     }
     buildTypes {
         release {
+            minifyEnabled true //打开混淆开关
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "EveryWhereTrip_${defaultConfig.versionName}_${releaseTime()}.apk"
+                }
+            }
+        }
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "EveryWhereTrip_${defaultConfig.versionName}_${releaseTime()}.apk"
+                }
+            }
         }
+
     }
+
+
 
     signingConfigs {
         debug {
@@ -32,12 +48,26 @@ android {
         }
     }
 
-    greendao {
-        schemaVersion 1  // 数据库的版本号
-        daoPackage 'com.example.tolovepy.everywheretrip.dao'  // 自己项目的包名
-        targetGenDir 'src/main/java' // 存放的目录地址
+    productFlavors {
+        //渠道的渠道号
+        xiaomi {}
+        qh360 {}
+        baidu {}
+        wandoujia {}
+        huawei {}
     }
 
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [CHANNEL_VALUE: name]
+    }
+    //多维度打包或者叫版本差异化打包,这里用不到,名字自己定义就好
+    flavorDimensions "every"
+
+}
+
+// 获取当前系统时间
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
 
 dependencies {
@@ -52,13 +82,9 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     //RecyclerView依赖
     implementation 'com.android.support:recyclerview-v7:28.0.0'
-    //搜索框
-    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
     //轮播图
     //最新版本
     implementation 'com.youth.banner:banner:1.4.10'
-    //glide图片加载框架
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
     //ok
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     //Tablayout依赖
@@ -90,7 +116,4 @@ dependencies {
     implementation 'com.yanzhenjie:recyclerview-swipe:1.1.4'
     //改变状态栏
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
-    //普通依赖
-    implementation 'org.greenrobot:greendao:3.2.0'
-    implementation 'org.greenrobot:greendao-generator:3.2.0'
 }

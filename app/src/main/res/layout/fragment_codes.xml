@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="@string/send_again"
+            android:text="@string/send_newAgain"
             android:textColor="@color/c_999"
             android:textSize="@dimen/sp_14" />
 

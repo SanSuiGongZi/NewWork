@@ -85,6 +85,10 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
     protected void initView() {
         StatusBarUtil.setLightMode(this);
 
+        
+        String mString = "张三";
+        String mString = "李四";
+        
         String s = "develop分支";
         String ss = "develop分支1";
         String sss = "develop分支2";

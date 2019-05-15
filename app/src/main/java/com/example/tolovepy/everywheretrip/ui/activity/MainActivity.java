@@ -83,7 +83,10 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
     @Override
     protected void initView() {
         StatusBarUtil.setLightMode(this);
-
+        
+        String mString = "张三";
+        String mString = "李四";
+        
         mToolMain.setTitle("");
         setSupportActionBar(mToolMain);
 

@@ -15,6 +15,7 @@ import com.example.tolovepy.everywheretrip.bean.MainBean;
 import com.example.tolovepy.everywheretrip.bean.MainDetailsBean;
 import com.example.tolovepy.everywheretrip.bean.MessageBean;
 import com.example.tolovepy.everywheretrip.bean.StayBeans;
+import com.example.tolovepy.everywheretrip.bean.WebBean;
 import com.example.tolovepy.everywheretrip.bean.WithPath;
 import com.example.tolovepy.everywheretrip.bean.WithState;
 import com.example.tolovepy.everywheretrip.util.SpUtil;
@@ -214,9 +215,24 @@ public interface MyApi {
                                  @Path("banmiId") int banmiId,
                                  @Query("page") int page);
 
-    @GET("api/3.0/content/routes/{routeId}/reviews")
+    /**
+     * 全部评价
+     * @param token
+     * @param routeId
+     * @param page
+     * @return
+     */
+    @GET("api/3.0/content/routes/{routeId}/reviews?")
     Observable<AllComment> allComment(@Header("banmi-app-token") String token,
                                       @Path("routeId") int routeId,
                                       @Query("page") int page);
+
+    /**
+     * 旅行专题
+     * @param token
+     * @return
+     */
+    @GET("api/3.0/content/bundles")
+    Observable<WebBean> setWeb(@Header("banmi-app-token") String token);
 
 }

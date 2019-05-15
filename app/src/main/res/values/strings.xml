@@ -79,4 +79,8 @@
     <string name="Start_Details">开始线路</string>
     <string name="allComment">所有评论</string>
     <string name="preview">预览线路</string>
+    <string name="Now">刚刚</string>
+    <string name="AllState">所有状态</string>
+    <string name="send_state">上传了一条动态</string>
+    <string name="update_voice">更新了一条语音</string>
 </resources>

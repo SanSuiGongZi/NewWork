@@ -13,7 +13,7 @@ import com.example.tolovepy.everywheretrip.bean.MainBean;
 import com.example.tolovepy.everywheretrip.mvp.presenter.HomePre;
 import com.example.tolovepy.everywheretrip.mvp.view.HomeView;
 import com.example.tolovepy.everywheretrip.ui.activity.DetailsActivity;
-import com.example.tolovepy.everywheretrip.ui.activity.WebViewActivity;
+import com.example.tolovepy.everywheretrip.ui.activity.WebActivity;
 import com.example.tolovepy.everywheretrip.ui.adapter.MyAdapterHome;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -111,7 +111,7 @@ public class Fragment_Home extends BaseFragment<HomeView, HomePre> implements Ho
         adapterHome.setOnClickWeb(new MyAdapterHome.OnClickWeb() {
             @Override
             public void onClickWeb(String link, String title) {
-                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                Intent intent = new Intent(getActivity(), WebActivity.class);
                 intent.putExtra("ids", link);
                 intent.putExtra("data", title);
                 getActivity().startActivity(intent);

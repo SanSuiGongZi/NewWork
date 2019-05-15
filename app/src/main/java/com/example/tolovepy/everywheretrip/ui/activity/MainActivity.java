@@ -41,7 +41,11 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+<<<<<<< HEAD
 //主分支
+=======
+//develop分支
+>>>>>>> developx
 public class MainActivity extends BaseActivity<IView, Presenter> implements IView {
 
     @BindView(R.id.mTool_main)
@@ -84,6 +88,15 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
     @Override
     protected void initView() {
         StatusBarUtil.setLightMode(this);
+
+        
+        String mStrings = "张三";
+        String mString = "李四";
+        
+        String s = "develop分支";
+        String ss = "develop分支1";
+        String sss = "develop分支2";
+
 
         mToolMain.setTitle("");
         setSupportActionBar(mToolMain);

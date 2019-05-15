@@ -4,7 +4,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -67,7 +66,7 @@ public class WithDetailsActivity extends BaseActivity<WithView, WithPre> impleme
     @BindView(R.id.mTab)
     TabLayout mTab;
     @BindView(R.id.mVp)
-    ViewPager mVp;
+    AutofitViewPager mVp;
     @BindView(R.id.mTV_isCollection)
     TextView mTVIsCollection;
     private int mId;
@@ -106,11 +105,14 @@ public class WithDetailsActivity extends BaseActivity<WithView, WithPre> impleme
 
         mList = new ArrayList<>();
         FragmentPath path = new FragmentPath();
+        Fragment_State state = new Fragment_State();
         path.setban(mId);
+        state.setban(mId);
 
-        mList.add(new Fragment_State());
+        mList.add(state);
         mList.add(path);
         FragmentManager fm = getSupportFragmentManager();
+        mVp.setOffscreenPageLimit(2);
         mVp.setAdapter(new FragmentPagerAdapter(fm) {
             @Override
             public Fragment getItem(int i) {

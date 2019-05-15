@@ -10,6 +10,7 @@
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginTop="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_3"
         app:cardElevation="@dimen/dp_10"
         app:cardCornerRadius="@dimen/dp_15">
 

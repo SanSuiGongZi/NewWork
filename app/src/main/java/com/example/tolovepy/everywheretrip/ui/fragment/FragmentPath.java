@@ -59,7 +59,6 @@ public class FragmentPath extends BaseFragment<WithView, WithPre> implements Wit
         mRv.setAdapter(mPath);
 
         mPresenter.setStr(page, mBanmIId);
-
     }
 
     @Override

@@ -41,11 +41,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-<<<<<<< HEAD
 //主分支
-=======
 //develop分支
->>>>>>> developx
 public class MainActivity extends BaseActivity<IView, Presenter> implements IView {
 
     @BindView(R.id.mTool_main)

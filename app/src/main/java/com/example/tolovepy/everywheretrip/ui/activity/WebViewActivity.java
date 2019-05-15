@@ -39,7 +39,6 @@ public class WebViewActivity extends BaseActivity<EmptyView, EmptyPre> implement
     public static void startAct(Context context) {
         Intent intent = new Intent(context, WebViewActivity.class);
         intent.putExtra("data", "用户协议");
-        intent.putExtra("label", 1);
         context.startActivity(intent);
     }
 
@@ -54,7 +53,6 @@ public class WebViewActivity extends BaseActivity<EmptyView, EmptyPre> implement
         Intent intent = getIntent();
         String data = intent.getStringExtra("data");
         int label = intent.getIntExtra("label", 0);
-        String id = intent.getStringExtra("ids");
         mTvTool.setText(data);
 
         mToolWeb.setNavigationOnClickListener(new View.OnClickListener() {
@@ -63,8 +61,6 @@ public class WebViewActivity extends BaseActivity<EmptyView, EmptyPre> implement
                 finish();
             }
         });
-
-        if (label == 1) {
             web = AgentWeb.with(this)
                     .setAgentWebParent(mLlWeb, new LinearLayout.LayoutParams(-1, -1))
                     .closeIndicator()
@@ -72,15 +68,6 @@ public class WebViewActivity extends BaseActivity<EmptyView, EmptyPre> implement
                     .ready()
                     .go("https://api.banmi.com/app2017/agreement.html");
             //.useDefaultIndicator()
-        } else {
-            web = AgentWeb.with(this)
-                    .setAgentWebParent(mLlWeb, new LinearLayout.LayoutParams(-1, -1))
-                    .closeIndicator()
-                    .createAgentWeb()
-                    .ready()
-                    .go(id);
-        }
-
          /*new WebView(this).setWebChromeClient(new WebChromeClient(){
             @Override
             public void onReceivedTitle(WebView view, String title) {

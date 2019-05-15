@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.fragment.Fragment_State">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="@dimen/dp_42">
 
-</FrameLayout>
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/mAllState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dp_42"
+        android:layout_marginRight="@dimen/dp_17"
+        android:text="@string/AllState"
+        android:textColor="@color/c_999"
+        android:textSize="@dimen/sp_12" />
+
+</RelativeLayout>

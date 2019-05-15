@@ -86,6 +86,8 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
         StatusBarUtil.setLightMode(this);
 
         String s = "develop分支";
+        String ss = "develop分支1";
+        String sss = "develop分支2";
 
 
         mToolMain.setTitle("");

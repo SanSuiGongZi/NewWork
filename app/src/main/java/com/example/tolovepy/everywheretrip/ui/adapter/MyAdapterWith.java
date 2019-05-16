@@ -1,6 +1,7 @@
 package com.example.tolovepy.everywheretrip.ui.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -159,6 +160,7 @@ public class MyAdapterWith extends RecyclerView.Adapter<MyAdapterWith.ViewHolder
                 .load(mList.get(position).getImages().get(0))
                 .into(image);
         final PopupWindow pp = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        pp.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.c_60s)));
         pp.setOutsideTouchable(true);
         pp.showAtLocation(view, Gravity.CENTER, 0, 0);
 

@@ -126,6 +126,8 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
         StatusBarUtil.setLightMode(this);
         initSD();
 
+        SpUtil.setParam(Constants.TOKEN,"3y0whWfT68b5cvxmZIp95I5pkDFLkr0g8jMJwjMZzCtqe8h3QH3ZNNvbamoxph89dqO7qNpOURsEKihNPp8TUlyWP5PapGYBEykAA97jRjRfYPait3kW0jEEZP9UioQvcw");
+
         int versionCode = Tools.getVersionCode();
         String name = Tools.getVersionName();
         Log.e(TAG, "initView: " + versionCode + "..." + name);

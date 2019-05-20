@@ -6,6 +6,7 @@ import com.example.tolovepy.everywheretrip.base.BaseModel;
 import com.example.tolovepy.everywheretrip.bean.BalanceBean;
 import com.example.tolovepy.everywheretrip.bean.DemoBean;
 import com.example.tolovepy.everywheretrip.bean.MessageBean;
+import com.example.tolovepy.everywheretrip.bean.NewVersion;
 import com.example.tolovepy.everywheretrip.net.BaseObserver;
 import com.example.tolovepy.everywheretrip.net.HttpUtils;
 import com.example.tolovepy.everywheretrip.net.ResultCallBack;
@@ -79,7 +80,6 @@ public class Model extends BaseModel {
 
     }
 
-
     //获取修改的数据
     public void newMessage(final ResultCallBack<MessageBean> callBack) {
         MyApi myApi = HttpUtils.getInstance().getApiserver(MyApi.mainUrl, MyApi.class);
@@ -90,6 +90,29 @@ public class Model extends BaseModel {
                     public void onNext(MessageBean messageBean) {
 
                         callBack.onSuccess(messageBean);
+                    }
+
+                    @Override
+                    public void error(String msg) {
+                        callBack.onFail(msg);
+                    }
+
+                    @Override
+                    protected void subscribe(Disposable d) {
+                        addDisposable(d);
+                    }
+                });
+    }
+
+    //获取是否版本数据
+    public void getVersion(final ResultCallBack<NewVersion> callBack) {
+        MyApi myApi = HttpUtils.getInstance().getApiserver(MyApi.mainUrl, MyApi.class);
+        Observable<NewVersion> apiVersion = myApi.getVersion(MyApi.param);
+        apiVersion.compose(RxUtils.<NewVersion>rxObserableSchedulerHelper())
+                .subscribe(new BaseObserver<NewVersion>() {
+                    @Override
+                    public void onNext(NewVersion newVersion) {
+                        callBack.onSuccess(newVersion);
                     }
 
                     @Override

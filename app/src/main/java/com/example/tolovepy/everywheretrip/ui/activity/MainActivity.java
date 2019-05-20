@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseActivity;
 import com.example.tolovepy.everywheretrip.base.BaseFragment;
+import com.example.tolovepy.everywheretrip.base.Constants;
 import com.example.tolovepy.everywheretrip.mvp.presenter.EmptyPre;
 import com.example.tolovepy.everywheretrip.mvp.view.EmptyView;
 import com.example.tolovepy.everywheretrip.ui.adapter.MyAdapter_Vp;
@@ -23,6 +25,8 @@ import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_Discover;
 import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_Home;
 import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_Personage;
 import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_Stay;
+import com.example.tolovepy.everywheretrip.util.SpUtil;
+import com.example.tolovepy.everywheretrip.util.Tools;
 import com.example.tolovepy.everywheretrip.widget.BanViewPager;
 import com.jaeger.library.StatusBarUtil;
 
@@ -30,8 +34,10 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 
+//主分支
 //develop分支
 public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements EmptyView {
+
 
     @BindView(R.id.mTool_main)
     Toolbar mToolMain;
@@ -47,6 +53,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
     LinearLayout mll;
     private ArrayList<BaseFragment> list;
     private MyAdapter_Vp adapter_vp;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected EmptyPre initPresenter() {
@@ -63,9 +70,18 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
         context.startActivity(intent);
     }
 
+
+
     @Override
     protected void initView() {
         StatusBarUtil.setLightMode(this);
+
+
+        SpUtil.setParam(Constants.TOKEN,"3y0whWfT68b5cvxmZIp95I5pkDFLkr0g8jMJwjMZzCtqe8h3QH3ZNNvbamoxph89dqO7qNpOURsEKihNPp8TUlyWP5PapGYBEykAA97jRjRfYPait3kW0jEEZP9UioQvcw");
+
+        int versionCode = Tools.getVersionCode();
+        String name = Tools.getVersionName();
+        Log.e(TAG, "initView: " + versionCode + "..." + name);
 
         mToolMain.setTitle("");
         setSupportActionBar(mToolMain);
@@ -119,6 +135,10 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
             }
         });
 
+//        String balance = (String) SpUtil.getParam(Constants.BALANCE, "0");
+//        if (TextUtils.isEmpty(balance)) {
+//            mTv_balance.setText(balance);
+//        }
     }
 
     // Tab自定义view
@@ -130,6 +150,10 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
         imageView.setImageResource(image_src);
         return v;
     }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -149,5 +173,4 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

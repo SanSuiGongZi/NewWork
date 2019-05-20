@@ -16,6 +16,7 @@ import com.example.tolovepy.everywheretrip.bean.MainDetailsBean;
 import com.example.tolovepy.everywheretrip.bean.MapCityBean;
 import com.example.tolovepy.everywheretrip.bean.MapTabBean;
 import com.example.tolovepy.everywheretrip.bean.MessageBean;
+import com.example.tolovepy.everywheretrip.bean.NewVersion;
 import com.example.tolovepy.everywheretrip.bean.StayBeans;
 import com.example.tolovepy.everywheretrip.bean.WebBean;
 import com.example.tolovepy.everywheretrip.bean.WithPath;
@@ -240,6 +241,16 @@ public interface MyApi {
     Observable<WebBean> setWeb(@Header("banmi-app-token") String token);
 
     /**
+     * 获取版本信息
+     * @param token
+     * @return
+     */
+    @GET("api/app/common/getVersionInfo?operating_system=android")
+    Observable<NewVersion> getVersion(@Header("banmi-app-token") String token);
+
+
+
+    /*
      * 城市列表
      *
      * @param token

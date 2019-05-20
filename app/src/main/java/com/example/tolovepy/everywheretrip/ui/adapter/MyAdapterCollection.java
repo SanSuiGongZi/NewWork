@@ -9,10 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.bean.CollectionList;
+import com.example.tolovepy.everywheretrip.util.ImageLoader;
 
 import java.util.ArrayList;
 
@@ -46,8 +45,7 @@ public class MyAdapterCollection extends RecyclerView.Adapter<MyAdapterCollectio
         CollectionList.ResultBean.CollectedRoutesBean bean = mList.get(i);
         viewHolder.mTv_name_stay.setText(bean.getTitle());
         viewHolder.tv_person.setText(bean.getIntro());
-        RequestOptions options = RequestOptions.placeholderOf(R.mipmap.ee);
-        Glide.with(context).load(bean.getCardURL()).apply(options).into(viewHolder.img_stay);
+        ImageLoader.setImage(context,bean.getCardURL(),viewHolder.img_stay,R.mipmap.ee);
     }
 
     @Override

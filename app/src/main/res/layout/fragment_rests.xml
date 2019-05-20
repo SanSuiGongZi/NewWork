@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.Fragment_Rests">
+
+    <!-- TODO: Update blank fragment layout -->
+    <q.rorbin.verticaltablayout.VerticalTabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="match_parent"
+        android:background="#EDEDED"
+        indicator_color="@color/c_ffffff"
+        indicator_gravity="fill"
+        tab_height="@dimen/dp_50"
+        tab_mode="scrollable" />
+
+    <com.example.tolovepy.everywheretrip.widget.BanViewPager
+        android:id="@+id/mVp"
+        android:layout_weight="1"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="match_parent">
+
+    </com.example.tolovepy.everywheretrip.widget.BanViewPager>
+
+</LinearLayout>

@@ -13,6 +13,8 @@ import com.example.tolovepy.everywheretrip.bean.DemoBean;
 import com.example.tolovepy.everywheretrip.bean.LoginInfo;
 import com.example.tolovepy.everywheretrip.bean.MainBean;
 import com.example.tolovepy.everywheretrip.bean.MainDetailsBean;
+import com.example.tolovepy.everywheretrip.bean.MapCityBean;
+import com.example.tolovepy.everywheretrip.bean.MapTabBean;
 import com.example.tolovepy.everywheretrip.bean.MessageBean;
 import com.example.tolovepy.everywheretrip.bean.StayBeans;
 import com.example.tolovepy.everywheretrip.bean.WebBean;
@@ -217,6 +219,7 @@ public interface MyApi {
 
     /**
      * 全部评价
+     *
      * @param token
      * @param routeId
      * @param page
@@ -229,10 +232,44 @@ public interface MyApi {
 
     /**
      * 旅行专题
+     *
      * @param token
      * @return
      */
     @GET("api/3.0/content/bundles")
     Observable<WebBean> setWeb(@Header("banmi-app-token") String token);
+
+    /**
+     * 城市列表
+     *
+     * @param token
+     * @return
+     */
+    @GET("api/3.0/map/cities")
+    Observable<MapCityBean> setCity(@Header("banmi-app-token") String token);
+
+    /**
+     * 全部景点数据
+     *
+     * @param token
+     * @param cityID
+     * @return
+     */
+    @GET("api/3.0/map/spots")
+    Observable<MapTabBean> setOutTab(@Header("banmi-app-token") String token,
+                                     @Query("cityID") int cityID);
+
+    /**
+     * 分类景点数据
+     *
+     * @param token
+     * @param tagID
+     * @param cityID
+     * @return
+     */
+    @GET("api/3.0/map/spots")
+    Observable<MapTabBean> setMapTab(@Header("banmi-app-token") String token,
+                                     @Query("tagID") String tagID,
+                                     @Query("cityID") int cityID);
 
 }

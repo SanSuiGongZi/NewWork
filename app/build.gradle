@@ -63,6 +63,13 @@ android {
     //多维度打包或者叫版本差异化打包,这里用不到,名字自己定义就好
     flavorDimensions "every"
 
+
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+        }
+    }
+
 }
 
 // 获取当前系统时间
@@ -109,7 +116,6 @@ dependencies {
     //ButterKnife依赖
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
     //AgentWeb
     api 'com.just.agentweb:agentweb:4.0.3-alpha@aar' // (必选)
     //侧滑删除按钮
@@ -118,4 +124,8 @@ dependencies {
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
     //三方缩放图片
     implementation 'com.bm.photoview:library:1.4.1'
+    //图片变换的依赖
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
+    //纵向tab栏
+    implementation 'q.rorbin:VerticalTabLayout:1.2.5'
 }

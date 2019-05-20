@@ -98,6 +98,7 @@ public class MyAdapterHome extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 holder.mTv_str.setText(bean.getIntro());
                 holder.mTv_quantity.setText(bean.getPurchasedTimes() + "人关注");
                 holder.mBtn_price.setText("¥" + bean.getPrice());
+
                 Glide.with(context).load(bean.getCardURL()).into(holder.mImg_back);
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {

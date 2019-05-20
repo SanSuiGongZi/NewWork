@@ -9,10 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.bean.AllComment;
+import com.example.tolovepy.everywheretrip.util.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,8 +52,7 @@ public class MyAdapterAllComment extends RecyclerView.Adapter<MyAdapterAllCommen
         viewHolder.mTv_day.setText(bean.getCreatedAt());
         viewHolder.mTv_str.setText(bean.getContent());
 
-        RequestOptions options = RequestOptions.circleCropTransform().placeholder(R.mipmap.ee);
-        Glide.with(context).load(bean.getUserPhoto()).apply(options).into(viewHolder.mImg);
+        ImageLoader.setCircleImage(context,bean.getUserPhoto(),viewHolder.mImg,R.mipmap.ee);
 
     }
 

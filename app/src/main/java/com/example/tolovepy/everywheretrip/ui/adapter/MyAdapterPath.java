@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.bean.WithPath;
+import com.example.tolovepy.everywheretrip.util.ImageLoader;
 
 import java.util.ArrayList;
 
@@ -50,7 +50,9 @@ public class MyAdapterPath extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         holder.mTv_str.setText(bean.getIntro());
         holder.mTv_quantity.setText(bean.getPriceInCents() + "人关注");
         holder.mBtn_price.setText("¥" + bean.getPrice());
-        Glide.with(context).load(bean.getCardURL()).into(holder.mImg_back);
+
+        ImageLoader.setImage(context,bean.getCardURL(),holder.mImg_back,R.mipmap.ee);
+
     }
 
     @Override

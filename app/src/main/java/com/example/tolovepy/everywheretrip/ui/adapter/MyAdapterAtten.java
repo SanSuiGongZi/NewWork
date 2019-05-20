@@ -9,10 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.bean.AttenList;
+import com.example.tolovepy.everywheretrip.util.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +48,8 @@ public class MyAdapterAtten extends RecyclerView.Adapter<MyAdapterAtten.ViewHold
         viewHolder.tv_person.setText(bean.getId() + "人关注");
         viewHolder.mTv_region.setText(bean.getLocation());
         viewHolder.mTv_status.setText(bean.getOccupation());
-        RequestOptions options = RequestOptions.placeholderOf(R.mipmap.ee);
-        Glide.with(context).load(bean.getPhoto()).apply(options).into(viewHolder.img_stay);
+
+        ImageLoader.setImage(context,bean.getPhoto(),viewHolder.img_stay,R.mipmap.ee);
 
         if (mBoolean) {
             viewHolder.mImg.setVisibility(View.VISIBLE);
@@ -61,9 +60,9 @@ public class MyAdapterAtten extends RecyclerView.Adapter<MyAdapterAtten.ViewHold
         final boolean isFollowed = bean.isIsFollowed();
 
         if (isFollowed) {
-            Glide.with(context).load(R.mipmap.follow).into(viewHolder.mImg);
+            ImageLoader.setImage(context,R.mipmap.follow,viewHolder.mImg,R.mipmap.follow);
         } else {
-            Glide.with(context).load(R.mipmap.follow_unselected).into(viewHolder.mImg);
+            ImageLoader.setImage(context,R.mipmap.follow_unselected,viewHolder.mImg,R.mipmap.follow_unselected);
         }
 
         viewHolder.mImg.setOnClickListener(new View.OnClickListener() {

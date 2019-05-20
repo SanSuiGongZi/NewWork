@@ -5,75 +5,58 @@ import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-<<<<<<< HEAD
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-=======
->>>>>>> developx
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
-<<<<<<< HEAD
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-=======
-import android.support.v7.widget.Toolbar;
->>>>>>> developx
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-<<<<<<< HEAD
 import android.widget.RelativeLayout;
-=======
->>>>>>> developx
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseActivity;
 import com.example.tolovepy.everywheretrip.base.BaseFragment;
-<<<<<<< HEAD
 import com.example.tolovepy.everywheretrip.base.Constants;
 import com.example.tolovepy.everywheretrip.bean.BalanceBean;
 import com.example.tolovepy.everywheretrip.bean.MessageBean;
 import com.example.tolovepy.everywheretrip.bean.NewVersion;
-import com.example.tolovepy.everywheretrip.mvp.presenter.Presenter;
-import com.example.tolovepy.everywheretrip.mvp.view.IView;
-import com.example.tolovepy.everywheretrip.net.MyServer;
-=======
 import com.example.tolovepy.everywheretrip.mvp.presenter.EmptyPre;
 import com.example.tolovepy.everywheretrip.mvp.view.EmptyView;
->>>>>>> developx
+import com.example.tolovepy.everywheretrip.net.MyServer;
 import com.example.tolovepy.everywheretrip.ui.adapter.MyAdapter_Vp;
 import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_Discover;
 import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_Home;
 import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_Personage;
 import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_Stay;
-<<<<<<< HEAD
 import com.example.tolovepy.everywheretrip.util.SpUtil;
 import com.example.tolovepy.everywheretrip.util.ToastUtil;
 import com.example.tolovepy.everywheretrip.util.Tools;
-=======
 import com.example.tolovepy.everywheretrip.widget.BanViewPager;
->>>>>>> developx
 import com.jaeger.library.StatusBarUtil;
 
 import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.OnClick;
+import retrofit2.http.HEAD;
 
 //主分支
 //develop分支
@@ -94,7 +77,6 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
     LinearLayout mll;
     private ArrayList<BaseFragment> list;
     private MyAdapter_Vp adapter_vp;
-<<<<<<< HEAD
     private MyServer.XiaZai binder;
     private static final String TAG = "MainActivity";
     private TextView mMTv_name;
@@ -105,9 +87,6 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
     private LinearLayout mVersions;
     private File sd;
     private ProgressDialog mDialog;
-
-=======
->>>>>>> developx
 
     @Override
     protected EmptyPre initPresenter() {
@@ -147,15 +126,12 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
         StatusBarUtil.setLightMode(this);
         initSD();
 
-<<<<<<< HEAD
         SpUtil.setParam(Constants.TOKEN,"3y0whWfT68b5cvxmZIp95I5pkDFLkr0g8jMJwjMZzCtqe8h3QH3ZNNvbamoxph89dqO7qNpOURsEKihNPp8TUlyWP5PapGYBEykAA97jRjRfYPait3kW0jEEZP9UioQvcw");
 
         int versionCode = Tools.getVersionCode();
         String name = Tools.getVersionName();
         Log.e(TAG, "initView: " + versionCode + "..." + name);
 
-=======
->>>>>>> developx
         mToolMain.setTitle("");
         setSupportActionBar(mToolMain);
         mToolTv.setText("线路");
@@ -178,15 +154,12 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
         mTab.addTab(mTab.newTab().setText("发现").setIcon(R.drawable.photoback3));
         mTab.addTab(mTab.newTab().setText("我的").setIcon(R.drawable.photobacks));
         // 修改样式，主要是调近了图标与文字之间的距离
-<<<<<<< HEAD
         mTab.getTabAt(0).setCustomView(getTabView("首页", R.drawable.photoback));
         mTab.getTabAt(1).setCustomView(getTabView("伴你", R.drawable.photobacks));
-=======
         mTab.getTabAt(0).setCustomView(getTabView("怎么玩", R.drawable.photoback));
         mTab.getTabAt(1).setCustomView(getTabView("关注", R.drawable.photoback2));
         mTab.getTabAt(2).setCustomView(getTabView("发现", R.drawable.photoback3));
         mTab.getTabAt(3).setCustomView(getTabView("我的", R.drawable.photobacks));
->>>>>>> developx
 
         mVp.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTab));
         mTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -213,18 +186,10 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
             }
         });
 
-<<<<<<< HEAD
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDl, mToolMain, R.string.agentweb_click_open, R.string.srl_content_empty);
-        mDl.addDrawerListener(toggle);
-        toggle.setDrawerIndicatorEnabled(false);
-        toggle.syncState();
-
         String balance = (String) SpUtil.getParam(Constants.BALANCE, "0");
         if (TextUtils.isEmpty(balance)) {
             mTv_balance.setText(balance);
         }
-=======
->>>>>>> developx
     }
 
     // Tab自定义view
@@ -236,77 +201,6 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
         imageView.setImageResource(image_src);
         return v;
     }
-
-<<<<<<< HEAD
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        set();
-        mPresenter.getModel();
-    }
-
-    private void set() {
-        mPresenter.newData();
-    }
-
-    @Override
-    protected void initData() {
-        mPresenter.getModel();
-    }
-
-    @Override
-    protected void initListener() {
-        //头像父布局
-        RelativeLayout mRl = findViewById(R.id.rl_tit);
-        //收藏
-        RelativeLayout mRls = findViewById(R.id.collect);
-        //用户名
-        mMTv_name = findViewById(R.id.mTv_name);
-        //头像
-        mMIv = findViewById(R.id.mIv);
-        //个性签名
-        mMTv_signature = findViewById(R.id.mTv_signature);
-        //关注
-        mMTv_attention = findViewById(R.id.attention);
-        //余额
-        mTv_balance = findViewById(R.id.mTv_money);
-        //版本检测
-        mVersions = findViewById(R.id.versions);
-
-        set();
-
-        mRl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MessageActivity.class));
-                mDl.closeDrawer(Gravity.LEFT);
-            }
-        });
-        mRls.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CollectionActivity.class));
-                mDl.closeDrawer(Gravity.LEFT);
-            }
-        });
-        mMTv_attention.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AttentionActivity.class));
-                mDl.closeDrawer(Gravity.LEFT);
-            }
-        });
-
-        mVersions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.setVersion();
-            }
-        });
-
-    }
-
 
     private void initSD() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
@@ -333,8 +227,7 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
     }
 
 
-=======
->>>>>>> developx
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -352,16 +245,6 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
                 break;*/
         }
         return super.onOptionsItemSelected(item);
-    }
-
-<<<<<<< HEAD
-    @OnClick(R.id.mImg_tool)
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.mImg_tool:
-                mDl.openDrawer(Gravity.LEFT);
-                break;
-        }
     }
 
     @Override
@@ -464,7 +347,4 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
 //        mDialog.show();
 
     }
-
-=======
->>>>>>> developx
 }

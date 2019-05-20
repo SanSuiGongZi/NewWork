@@ -241,7 +241,6 @@ public interface MyApi {
     Observable<WebBean> setWeb(@Header("banmi-app-token") String token);
 
     /**
-<<<<<<< HEAD
      * 获取版本信息
      * @param token
      * @return
@@ -251,7 +250,7 @@ public interface MyApi {
 
 
 
-=======
+    /*
      * 城市列表
      *
      * @param token
@@ -283,6 +282,5 @@ public interface MyApi {
     Observable<MapTabBean> setMapTab(@Header("banmi-app-token") String token,
                                      @Query("tagID") String tagID,
                                      @Query("cityID") int cityID);
->>>>>>> developx
 
 }

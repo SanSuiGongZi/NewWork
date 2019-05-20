@@ -265,7 +265,6 @@ public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements E
         mMTv_signature.setText(bean.getDescription());
 
         RequestOptions options = new RequestOptions().circleCrop().placeholder(R.mipmap.ee);
-        Glide.with(this).load(bean.getPhoto()).apply(options).into(mImgTool);
         Glide.with(this).load(bean.getPhoto()).apply(options).into(mMIv);
     }
 

@@ -28,8 +28,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseActivity;
 import com.example.tolovepy.everywheretrip.base.Constants;
@@ -37,6 +35,7 @@ import com.example.tolovepy.everywheretrip.bean.MessageBean;
 import com.example.tolovepy.everywheretrip.bean.UpLoadBean;
 import com.example.tolovepy.everywheretrip.mvp.presenter.MyMessagePre;
 import com.example.tolovepy.everywheretrip.mvp.view.MyMessageView;
+import com.example.tolovepy.everywheretrip.util.ImageLoader;
 import com.example.tolovepy.everywheretrip.util.SpUtil;
 import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
@@ -357,7 +356,9 @@ public class HeadActivity extends BaseActivity<MyMessageView, MyMessagePre> impl
                                 SpUtil.setParam(Constants.PHOTO, url1);
                                 //上传到伴米接口
                                 mPresenter.outData();
-                                Glide.with(HeadActivity.this).load(url1).into(mImgHead);
+
+                                ImageLoader.setImage(HeadActivity.this,url1,mImgHead,R.mipmap.ee);
+
                                 hideLoading();
                                 mTv.setVisibility(GridView.VISIBLE);
                                 mImgPopup.setVisibility(GridView.GONE);
@@ -374,8 +375,7 @@ public class HeadActivity extends BaseActivity<MyMessageView, MyMessagePre> impl
 
     @Override
     public void setMessage(MessageBean message) {
-        RequestOptions options = new RequestOptions().placeholder(R.mipmap.ee);
-        Glide.with(this).load(message.getResult().getPhoto()).apply(options).into(mImgHead);
+        ImageLoader.setImage(HeadActivity.this,message.getResult().getPhoto(),mImgHead,R.mipmap.ee);
     }
 
     @Override

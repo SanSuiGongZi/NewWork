@@ -19,9 +19,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bm.library.PhotoView;
-import com.bumptech.glide.Glide;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.bean.WithState;
+import com.example.tolovepy.everywheretrip.util.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,9 +73,9 @@ public class MyAdapterWith extends RecyclerView.Adapter<MyAdapterWith.ViewHolder
                 viewHolder.mTvPraise.setText(bean.getLikeCount() + "");
 
                 if (bean.isIsLiked()) {
-                    Glide.with(context).load(R.mipmap.praise).into(viewHolder.praise);
+                    ImageLoader.setImage(context,R.mipmap.praise,viewHolder.praise,R.mipmap.praise);
                 } else {
-                    Glide.with(context).load(R.mipmap.praise_unselected).into(viewHolder.praise1);
+                    ImageLoader.setImage(context,R.mipmap.praise_unselected,viewHolder.praise1,R.mipmap.praise_unselected);
                 }
 
                 //开始监听
@@ -122,7 +122,10 @@ public class MyAdapterWith extends RecyclerView.Adapter<MyAdapterWith.ViewHolder
                 viewHolder.mTvStr.setText(bean.getContent());
 
                 if (bean.getImages().size() > 0) {
-                    Glide.with(context).load(bean.getImages().get(0)).into(viewHolder.mIvState);
+                    String o = (String) bean.getImages().get(0);
+                    ImageLoader.setImage(context,o,viewHolder.mIvState,R.mipmap.ee);
+
+                    //Glide.with(context).load(bean.getImages().get(0)).into(viewHolder.mIvState);
 
                     viewHolder.mIvState.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -156,9 +159,12 @@ public class MyAdapterWith extends RecyclerView.Adapter<MyAdapterWith.ViewHolder
         //给他设置初始化图片时是不进行缩放的
         image.enable();
         //将接口回调穿过来的Url给Popupwindow中的控件设置上
-        Glide.with(context)
+        String o = (String) mList.get(position).getImages().get(0);
+        ImageLoader.setImage(context,o,image,R.mipmap.ee);
+
+        /*Glide.with(context)
                 .load(mList.get(position).getImages().get(0))
-                .into(image);
+                .into(image);*/
         final PopupWindow pp = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
         pp.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.c_60s)));
         pp.setOutsideTouchable(true);

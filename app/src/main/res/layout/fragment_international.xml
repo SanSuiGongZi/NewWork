@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.Fragment_International">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:text="当前定位"
+        android:textColor="@color/c_666"
+        android:textSize="@dimen/sp_12"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:id="@+id/mCurrentCity"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_34"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_toRightOf="@id/mIv"
+        android:background="@color/c_ffffff"
+        android:gravity="center"
+        android:text="@string/send_again"
+        android:textColor="@color/c_333"
+        android:textSize="@dimen/sp_12" />
+
+    <TextView
+        android:text="热门城市"
+        android:textSize="@dimen/dp_12"
+
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_13"
+        android:textColor="@color/c_666"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mRv"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_width="match_parent"
+        android:layout_marginRight="@dimen/dp_53"
+        android:layout_marginLeft="@dimen/dp_2"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

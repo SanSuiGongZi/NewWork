@@ -12,9 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseActivity;
 import com.example.tolovepy.everywheretrip.base.BaseFragment;
@@ -24,6 +21,7 @@ import com.example.tolovepy.everywheretrip.mvp.presenter.WithPre;
 import com.example.tolovepy.everywheretrip.mvp.view.WithView;
 import com.example.tolovepy.everywheretrip.ui.fragment.FragmentPath;
 import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_State;
+import com.example.tolovepy.everywheretrip.util.ImageLoader;
 import com.example.tolovepy.everywheretrip.util.ToastUtil;
 import com.jaeger.library.StatusBarUtil;
 import com.umeng.socialize.ShareAction;
@@ -73,7 +71,6 @@ public class WithDetailsActivity extends BaseActivity<WithView, WithPre> impleme
     private int page = 1;
     private ArrayList<BaseFragment> mList;
     private String mPhoto;
-    private RequestOptions mOptions;
 
     @Override
     protected WithPre initPresenter() {
@@ -90,9 +87,6 @@ public class WithDetailsActivity extends BaseActivity<WithView, WithPre> impleme
         StatusBarUtil.setLightMode(this);
         mTool.setTitle("");
         setSupportActionBar(mTool);
-
-        RoundedCorners corners = new RoundedCorners(20);
-        mOptions = RequestOptions.bitmapTransform(corners);
 
         mId = getIntent().getIntExtra("idssss", 0);
         Log.e(TAG, "initView: "+mId );
@@ -150,7 +144,8 @@ public class WithDetailsActivity extends BaseActivity<WithView, WithPre> impleme
         WithState.ResultBean.BanmiBean banmi = withState.getResult().getBanmi();
         mPhoto = banmi.getPhoto();
 
-        Glide.with(this).load(mPhoto).apply(mOptions).into(mIVTitle);
+        ImageLoader.setCornerImage(WithDetailsActivity.this,mPhoto,mIVTitle,10,R.mipmap.ee);
+
         mTvTitle.setText(banmi.getName());
         mTvStr.setText(banmi.getFollowing() + "人关注");
         mTvRegion.setText(banmi.getLocation());
@@ -159,11 +154,14 @@ public class WithDetailsActivity extends BaseActivity<WithView, WithPre> impleme
 
         boolean followed = banmi.isIsFollowed();
         if (followed) {
-            Glide.with(this).load(R.mipmap.follow).into(isFollow);
+
+            ImageLoader.setImage(this,R.mipmap.follow,isFollow,R.mipmap.follow);
+
             mTVIsCollection.setText(getResources().getString(R.string.OkAttention));
 
         } else {
-            Glide.with(this).load(R.mipmap.follow_unselected).into(isFollow);
+            ImageLoader.setImage(this,R.mipmap.follow_unselected,isFollow,R.mipmap.follow_unselected);
+
             mTVIsCollection.setText(getResources().getString(R.string.Attention));
         }
 

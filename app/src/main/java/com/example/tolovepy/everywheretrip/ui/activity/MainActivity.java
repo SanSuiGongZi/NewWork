@@ -5,15 +5,19 @@ import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+=======
+>>>>>>> developx
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+<<<<<<< HEAD
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -22,20 +26,25 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+=======
+import android.support.v7.widget.Toolbar;
+>>>>>>> developx
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+<<<<<<< HEAD
 import android.widget.RelativeLayout;
+=======
+>>>>>>> developx
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseActivity;
 import com.example.tolovepy.everywheretrip.base.BaseFragment;
+<<<<<<< HEAD
 import com.example.tolovepy.everywheretrip.base.Constants;
 import com.example.tolovepy.everywheretrip.bean.BalanceBean;
 import com.example.tolovepy.everywheretrip.bean.MessageBean;
@@ -43,39 +52,49 @@ import com.example.tolovepy.everywheretrip.bean.NewVersion;
 import com.example.tolovepy.everywheretrip.mvp.presenter.Presenter;
 import com.example.tolovepy.everywheretrip.mvp.view.IView;
 import com.example.tolovepy.everywheretrip.net.MyServer;
+=======
+import com.example.tolovepy.everywheretrip.mvp.presenter.EmptyPre;
+import com.example.tolovepy.everywheretrip.mvp.view.EmptyView;
+>>>>>>> developx
 import com.example.tolovepy.everywheretrip.ui.adapter.MyAdapter_Vp;
+import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_Discover;
 import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_Home;
+import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_Personage;
 import com.example.tolovepy.everywheretrip.ui.fragment.Fragment_Stay;
+<<<<<<< HEAD
 import com.example.tolovepy.everywheretrip.util.SpUtil;
 import com.example.tolovepy.everywheretrip.util.ToastUtil;
 import com.example.tolovepy.everywheretrip.util.Tools;
+=======
+import com.example.tolovepy.everywheretrip.widget.BanViewPager;
+>>>>>>> developx
 import com.jaeger.library.StatusBarUtil;
 
 import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 //主分支
 //develop分支
-public class MainActivity extends BaseActivity<IView, Presenter> implements IView {
+public class MainActivity extends BaseActivity<EmptyView, EmptyPre> implements EmptyView {
 
 
     @BindView(R.id.mTool_main)
     Toolbar mToolMain;
     @BindView(R.id.mVp)
-    ViewPager mVp;
+    BanViewPager mVp;
     @BindView(R.id.mTab)
     TabLayout mTab;
-    @BindView(R.id.mDl)
-    DrawerLayout mDl;
-    @BindView(R.id.mImg_tool)
-    ImageView mImgTool;
-    @BindView(R.id.mNv)
-    NavigationView mNv;
+    @BindView(R.id.mTool_tv)
+    TextView mToolTv;
+    @BindView(R.id.mTv_city)
+    TextView mTvCity;
+    @BindView(R.id.mll)
+    LinearLayout mll;
     private ArrayList<BaseFragment> list;
     private MyAdapter_Vp adapter_vp;
+<<<<<<< HEAD
     private MyServer.XiaZai binder;
     private static final String TAG = "MainActivity";
     private TextView mMTv_name;
@@ -87,10 +106,12 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
     private File sd;
     private ProgressDialog mDialog;
 
+=======
+>>>>>>> developx
 
     @Override
-    protected Presenter initPresenter() {
-        return new Presenter();
+    protected EmptyPre initPresenter() {
+        return new EmptyPre();
     }
 
     @Override
@@ -126,32 +147,59 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
         StatusBarUtil.setLightMode(this);
         initSD();
 
+<<<<<<< HEAD
         SpUtil.setParam(Constants.TOKEN,"3y0whWfT68b5cvxmZIp95I5pkDFLkr0g8jMJwjMZzCtqe8h3QH3ZNNvbamoxph89dqO7qNpOURsEKihNPp8TUlyWP5PapGYBEykAA97jRjRfYPait3kW0jEEZP9UioQvcw");
 
         int versionCode = Tools.getVersionCode();
         String name = Tools.getVersionName();
         Log.e(TAG, "initView: " + versionCode + "..." + name);
 
+=======
+>>>>>>> developx
         mToolMain.setTitle("");
         setSupportActionBar(mToolMain);
+        mToolTv.setText("线路");
+        mll.setVisibility(View.GONE);
+
+        Fragment_Discover discover = new Fragment_Discover();
 
         list = new ArrayList<>();
         list.add(new Fragment_Home());
         list.add(new Fragment_Stay());
+        list.add(discover);
+        list.add(new Fragment_Personage());
+
+
         FragmentManager fm = getSupportFragmentManager();
         adapter_vp = new MyAdapter_Vp(fm, list);
         mVp.setAdapter(adapter_vp);
-        mTab.addTab(mTab.newTab().setText("首页").setIcon(R.drawable.photoback));
-        mTab.addTab(mTab.newTab().setText("伴你").setIcon(R.drawable.photobacks));
+        mTab.addTab(mTab.newTab().setText("怎么玩").setIcon(R.drawable.photoback));
+        mTab.addTab(mTab.newTab().setText("关注").setIcon(R.drawable.photoback2));
+        mTab.addTab(mTab.newTab().setText("发现").setIcon(R.drawable.photoback3));
+        mTab.addTab(mTab.newTab().setText("我的").setIcon(R.drawable.photobacks));
         // 修改样式，主要是调近了图标与文字之间的距离
+<<<<<<< HEAD
         mTab.getTabAt(0).setCustomView(getTabView("首页", R.drawable.photoback));
         mTab.getTabAt(1).setCustomView(getTabView("伴你", R.drawable.photobacks));
+=======
+        mTab.getTabAt(0).setCustomView(getTabView("怎么玩", R.drawable.photoback));
+        mTab.getTabAt(1).setCustomView(getTabView("关注", R.drawable.photoback2));
+        mTab.getTabAt(2).setCustomView(getTabView("发现", R.drawable.photoback3));
+        mTab.getTabAt(3).setCustomView(getTabView("我的", R.drawable.photobacks));
+>>>>>>> developx
 
         mVp.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTab));
         mTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mVp.setCurrentItem(tab.getPosition());
+                mToolTv.setText(tab.getText());
+                if (tab.getPosition()==2){
+                    mll.setVisibility(View.VISIBLE);
+                    mToolTv.setVisibility(View.GONE);
+                }else {
+                    mll.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -165,6 +213,7 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
             }
         });
 
+<<<<<<< HEAD
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDl, mToolMain, R.string.agentweb_click_open, R.string.srl_content_empty);
         mDl.addDrawerListener(toggle);
         toggle.setDrawerIndicatorEnabled(false);
@@ -174,6 +223,8 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
         if (TextUtils.isEmpty(balance)) {
             mTv_balance.setText(balance);
         }
+=======
+>>>>>>> developx
     }
 
     // Tab自定义view
@@ -186,6 +237,7 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
         return v;
     }
 
+<<<<<<< HEAD
 
     @Override
     protected void onRestart() {
@@ -281,6 +333,8 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
     }
 
 
+=======
+>>>>>>> developx
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -300,6 +354,7 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
         return super.onOptionsItemSelected(item);
     }
 
+<<<<<<< HEAD
     @OnClick(R.id.mImg_tool)
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -410,4 +465,6 @@ public class MainActivity extends BaseActivity<IView, Presenter> implements IVie
 
     }
 
+=======
+>>>>>>> developx
 }

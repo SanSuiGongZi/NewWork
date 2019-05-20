@@ -8,13 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseActivity;
 import com.example.tolovepy.everywheretrip.bean.MainDetailsBean;
 import com.example.tolovepy.everywheretrip.mvp.presenter.DetailsPre;
 import com.example.tolovepy.everywheretrip.mvp.view.DetailsView;
+import com.example.tolovepy.everywheretrip.util.ImageLoader;
 import com.example.tolovepy.everywheretrip.util.ToastUtil;
 import com.jaeger.library.StatusBarUtil;
 import com.umeng.socialize.ShareAction;
@@ -217,13 +216,14 @@ public class DetailsActivity extends BaseActivity<DetailsView, DetailsPre> imple
         mTvTitleDe.setText(route.getTitle());
         mTvStrDe.setText(route.getIntro());
         mBtnPrice.setText(getResources().getString(R.string.cost) + route.getPrice());
-        RequestOptions options = RequestOptions.placeholderOf(R.mipmap.ee);
-        Glide.with(this).load(mUrl).apply(options).into(mIVTitle);
+
+        ImageLoader.setImage(this,mUrl,mIVTitle,R.mipmap.ee);
 
         MainDetailsBean.ResultBean.BanmiBean banmi = bean.getResult().getBanmi();
 
-        RequestOptions optionRadio = RequestOptions.circleCropTransform().placeholderOf(R.mipmap.ee);
-        Glide.with(this).load(banmi.getPhoto()).apply(optionRadio).into(mIVPhoto);
+
+        ImageLoader.setCircleImage(this,banmi.getPhoto(),mIVPhoto,R.mipmap.ee);
+
         mTvNameDe.setText(banmi.getName());
         mTvProfession.setText(banmi.getOccupation());
         mTvAreaName.setText(banmi.getLocation());
@@ -232,19 +232,25 @@ public class DetailsActivity extends BaseActivity<DetailsView, DetailsPre> imple
         List<MainDetailsBean.ResultBean.ReviewsBean> list = bean.getResult().getReviews();
 
         MainDetailsBean.ResultBean.ReviewsBean reviewsBean = list.get(0);
-        Glide.with(this).load(reviewsBean.getUserPhoto()).apply(optionRadio).into(mIVPhotoComment);
+
+        ImageLoader.setCircleImage(this,reviewsBean.getUserPhoto(),mIVPhotoComment,R.mipmap.ee);
+
         mTvNameComment.setText(reviewsBean.getUserName());
         mTvProfessionComment.setText(reviewsBean.getCreatedAt());
         mTvStrComment.setText(reviewsBean.getContent());
 
         MainDetailsBean.ResultBean.ReviewsBean reviewsBean01 = list.get(1);
-        Glide.with(this).load(reviewsBean01.getUserPhoto()).apply(optionRadio).into(mIVPhotoComment02);
+
+        ImageLoader.setCircleImage(this,reviewsBean01.getUserPhoto(),mIVPhotoComment02,R.mipmap.ee);
+
         mTvNameComment02.setText(reviewsBean01.getUserName());
         mTvProfessionComment02.setText(reviewsBean01.getCreatedAt());
         mTvStrComment02.setText(reviewsBean01.getContent());
 
         MainDetailsBean.ResultBean.ReviewsBean reviewsBean02 = list.get(2);
-        Glide.with(this).load(reviewsBean02.getUserPhoto()).apply(optionRadio).into(mIVPhotoComment03);
+
+        ImageLoader.setCircleImage(this,reviewsBean02.getUserPhoto(),mIVPhotoComment03,R.mipmap.ee);
+
         mTvNameComment03.setText(reviewsBean02.getUserName());
         mTvProfessionComment03.setText(reviewsBean02.getCreatedAt());
         mTvStrComment03.setText(reviewsBean02.getContent());

@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.bean.WebBean;
+import com.example.tolovepy.everywheretrip.util.ImageLoader;
 
 import java.util.ArrayList;
 
@@ -40,7 +40,8 @@ public class MyAdapterWeb extends RecyclerView.Adapter<MyAdapterWeb.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final WebBean.ResultBean.BundlesBean bean = mList.get(i);
-        Glide.with(context).load(bean.getCardURL()).into(viewHolder.mIv_home);
+
+        ImageLoader.setImage(context,bean.getCardURL(),viewHolder.mIv_home,R.mipmap.ee);
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

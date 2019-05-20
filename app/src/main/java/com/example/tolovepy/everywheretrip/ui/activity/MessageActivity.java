@@ -14,14 +14,13 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseActivity;
 import com.example.tolovepy.everywheretrip.base.Constants;
 import com.example.tolovepy.everywheretrip.bean.MessageBean;
 import com.example.tolovepy.everywheretrip.mvp.presenter.MyMessagePre;
 import com.example.tolovepy.everywheretrip.mvp.view.MyMessageView;
+import com.example.tolovepy.everywheretrip.util.ImageLoader;
 import com.example.tolovepy.everywheretrip.util.SpUtil;
 import com.jaeger.library.StatusBarUtil;
 
@@ -217,8 +216,9 @@ public class MessageActivity extends BaseActivity<MyMessageView, MyMessagePre> i
             mTvSex.setText("保密");
         }
 
-        RequestOptions options = new RequestOptions().circleCrop().placeholder(R.mipmap.ee);
-        Glide.with(this).load(bean.getPhoto()).apply(options).into(imgHead);
+
+        ImageLoader.setCircleImage(this,bean.getPhoto(),imgHead,R.mipmap.ee);
+
         hideLoading();
     }
 

@@ -15,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -148,7 +149,7 @@ public class Fragment_Personage extends BaseFragment<IView, Presenter> implement
 
     }
 
-    @OnClick({R.id.rl_tit, R.id.collect, R.id.attention,R.id.versions})
+    @OnClick({R.id.rl_tit, R.id.collect, R.id.attention, R.id.versions})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_tit:
@@ -223,7 +224,7 @@ public class Fragment_Personage extends BaseFragment<IView, Presenter> implement
         NewVersion.ResultBean.InfoBean infoBean = version.getResult().getInfo();
         String infoBeanVersion = infoBean.getVersion();
 
-        mTv_version.setText("当前版本:"+infoBeanVersion);
+        mTv_version.setText("当前版本:" + infoBeanVersion);
 
         String url = infoBean.getDownload_url();//apk下载地址
         String name = Tools.getVersionName();
@@ -238,42 +239,30 @@ public class Fragment_Personage extends BaseFragment<IView, Presenter> implement
     }
 
     private void forceUpdate() {
-       /* new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(getActivity())
                 .setTitle("又有重大更新了!")
                 .setMessage("是否要更新呢?")
                 .setIcon(R.mipmap.ee)
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        setVersionDownload(url);
+                        progressDialog();
                     }
                 })
-                .setNegativeButton("取消",null)
-                .show();*/
+                .setNegativeButton("取消", null)
+                .show();
+    }
 
+    private void progressDialog() {
         mDialog = new ProgressDialog(getActivity());
         mDialog.setTitle("又有重大更新了!");
         mDialog.setMessage("是否要更新呢?");
         mDialog.setIcon(R.mipmap.ee);
         mDialog.setIndeterminate(false);
-
+        mDialog.setCanceledOnTouchOutside(false);
         mDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-
-        mDialog.setButton(DialogInterface.BUTTON_POSITIVE, "立即更新", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //setVersionDownload(url);
-                mPresenter.setVersion();
-            }
-        });
-        mDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "我再想想", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //dialog.dismiss();
-            }
-        });
+        mPresenter.setVersion();
         mDialog.show();
-
     }
 
     private void initService(String url) {

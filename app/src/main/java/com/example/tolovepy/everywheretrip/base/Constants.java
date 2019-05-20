@@ -42,4 +42,8 @@ public interface Constants {
     String BALANCE = "0.00";
     String ISCOLLECTION = "true";
     String ISATTEN = "false";
+    String CITY = "北京";
+    String CITY_ID = "id";
+    String LATITUDE = "latitude";
+    String LONGITUDE = "longitude";
 }

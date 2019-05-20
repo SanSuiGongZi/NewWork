@@ -40,6 +40,8 @@ public class CityActivity extends BaseActivity<EmptyView, EmptyPre> implements E
     @Override
     protected void initView() {
 
+
+
         Intent intent = getIntent();
         String city = intent.getStringExtra("city");
 

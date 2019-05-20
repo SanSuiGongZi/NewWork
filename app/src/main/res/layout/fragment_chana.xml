@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.Fragment_Chana">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+    <com.example.tolovepy.everywheretrip.widget.MyLetterView
+        android:id="@+id/right_letter"
+        android:layout_width="@dimen/dp_13"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_5"/>
+
+    <TextView
+        android:id="@+id/dialog"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/c_ffffff"
+        android:textSize="@dimen/sp_20"
+        android:background="@drawable/color_navigation"/>
+
+</RelativeLayout>

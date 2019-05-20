@@ -11,10 +11,12 @@ import android.widget.Button;
 
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseFragment;
+import com.example.tolovepy.everywheretrip.base.Constants;
 import com.example.tolovepy.everywheretrip.bean.MapCityBean;
 import com.example.tolovepy.everywheretrip.mvp.presenter.EmptyPre;
 import com.example.tolovepy.everywheretrip.mvp.view.EmptyView;
 import com.example.tolovepy.everywheretrip.ui.adapter.MyAdapterInter;
+import com.example.tolovepy.everywheretrip.util.SpUtil;
 
 import java.util.List;
 
@@ -63,10 +65,10 @@ public class Fragment_International extends BaseFragment<EmptyView, EmptyPre> im
             @Override
             public void setOnItemClick(MapCityBean.ResultBean.CountriesBean.CitiesBeanX bean) {
                 Intent intent = new Intent();
-                intent.putExtra("id",bean.getId());
+                SpUtil.setParam(Constants.CITY_ID, bean.getId());
                 intent.putExtra("city",bean.getName());
-                intent.putExtra("latitude",bean.getLatitude());
-                intent.putExtra("longitude",bean.getLongitude());
+                intent.putExtra(Constants.LATITUDE,bean.getLatitude());
+                intent.putExtra(Constants.LONGITUDE,bean.getLongitude());
                 getActivity().setResult(2,intent);
                 getActivity().finish();
             }
@@ -76,6 +78,7 @@ public class Fragment_International extends BaseFragment<EmptyView, EmptyPre> im
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+
                 intent.putExtra("city","北京");
                 getActivity().setResult(2,intent);
                 getActivity().finish();

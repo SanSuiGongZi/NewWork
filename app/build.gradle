@@ -128,4 +128,6 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:3.3.0'
     //纵向tab栏
     implementation 'q.rorbin:VerticalTabLayout:1.2.5'
+    // 把中文转成拼音
+    implementation 'com.belerweb:pinyin4j:2.5.1'
 }

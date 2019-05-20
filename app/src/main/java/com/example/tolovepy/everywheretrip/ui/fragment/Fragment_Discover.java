@@ -28,11 +28,13 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.example.tolovepy.everywheretrip.R;
 import com.example.tolovepy.everywheretrip.base.BaseFragment;
+import com.example.tolovepy.everywheretrip.base.Constants;
 import com.example.tolovepy.everywheretrip.bean.MapCityBean;
 import com.example.tolovepy.everywheretrip.bean.MapTabBean;
 import com.example.tolovepy.everywheretrip.mvp.presenter.MapPre;
 import com.example.tolovepy.everywheretrip.mvp.view.MyMapView;
 import com.example.tolovepy.everywheretrip.ui.activity.CityActivity;
+import com.example.tolovepy.everywheretrip.util.SpUtil;
 import com.example.tolovepy.everywheretrip.util.ToastUtil;
 
 import java.util.List;
@@ -92,7 +94,8 @@ public class Fragment_Discover extends BaseFragment<MyMapView, MapPre> implement
     protected void initData() {
         LinearLayout mll = getActivity().findViewById(R.id.mll);
         mTv_city = getActivity().findViewById(R.id.mTv_city);
-        mTv_city.setText("北京");
+        String city = (String) SpUtil.getParam(Constants.CITY, "北京");
+        mTv_city.setText(city);
         mll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,10 +111,11 @@ public class Fragment_Discover extends BaseFragment<MyMapView, MapPre> implement
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == 2) {
-            mId = data.getIntExtra("id", 0);
+
             String city = data.getStringExtra("city");
-            mLatitude = data.getDoubleExtra("latitude", 39.90657);
-            mLongitude = data.getDoubleExtra("longitude", 116.3876);
+            mId = (int) SpUtil.getParam(Constants.CITY_ID, 10);
+            mLatitude = data.getDoubleExtra(Constants.LATITUDE, 39.90657);
+            mLongitude = data.getDoubleExtra(Constants.LONGITUDE, 116.3876);
 
             mTv_city.setText(city);
             mPresenter.setOutTab(mId);

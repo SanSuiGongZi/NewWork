@@ -76,7 +76,7 @@ public class MyServer extends Service {
 
     public class XiaZai extends Binder {
 
-        public void setVersionDownload(final Context context, final File file , final ProgressDialog dialog) {
+        public void setVersionDownload(final Context context, final File file, final ProgressDialog dialog) {
 
             OkHttpClient client = new OkHttpClient.Builder()
                     .build();
@@ -98,14 +98,14 @@ public class MyServer extends Service {
                 public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
                     ResponseBody body = response.body();
                     InputStream inputStream = body.byteStream();
-                    saveFile(inputStream, file + "/" + "abc123.apk", (int) body.contentLength(), context , dialog);
+                    saveFile(inputStream, file + "/" + "abc123.apk", (int) body.contentLength(), context, dialog);
                 }
             });
 
         }
 
 
-        private void saveFile(InputStream inputStream, String s, int max, Context context , ProgressDialog dialog) {
+        private void saveFile(InputStream inputStream, String s, int max, Context context, ProgressDialog dialog) {
 
             //mDialog.setMax((int) max);
             //读写的进度
@@ -125,11 +125,13 @@ public class MyServer extends Service {
                     newCount = (100 * count) / max;
                     dialog.setProgress(newCount);
                     dialog.setMax(100);
-                    Log.d(TAG, "progress: " + newCount + "%" + "    max:" + max);
+                    Log.d(TAG, "progress: " + newCount + "%" + "    max:" + max + "当前progress" + newCount);
                 }
 
                 inputStream.close();
                 outputStream.close();
+
+                dialog.dismiss();
 
                 InstallUtil.installApk(context, s);
 
